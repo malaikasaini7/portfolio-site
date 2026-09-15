@@ -1,0 +1,64 @@
+/* microinteractions (grace-dai inspired), desktop + motion-safe */
+
+/* 1. custom cursor */
+.mx-cursor {
+  position: fixed; top: 0; left: 0; z-index: 9999;
+  width: 10px; height: 10px; margin: -5px 0 0 -5px;
+  border-radius: 50%; background: var(--ink, #16161a);
+  pointer-events: none; opacity: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: width .18s ease, height .18s ease, margin .18s ease,
+              background-color .18s ease, opacity .18s ease;
+  will-change: transform;
+}
+.mx-cursor.is-on { opacity: 1; }
+.mx-cursor.is-link {
+  width: 40px; height: 40px; margin: -20px 0 0 -20px;
+  background: #fff; mix-blend-mode: difference;
+}
+.mx-cursor.is-media, .mx-cursor.has-label {
+  width: 64px; height: 64px; margin: -32px 0 0 -32px;
+  background: rgba(22,22,26,0.85);
+}
+.mx-cursor-label {
+  font: 500 12px/1 var(--sans, 'General Sans', sans-serif);
+  color: #faf9f6; letter-spacing: 0.02em; opacity: 0;
+  transition: opacity .15s ease;
+}
+.mx-cursor.has-label .mx-cursor-label { opacity: 1; }
+html.has-mx-cursor, html.has-mx-cursor * { cursor: none !important; }
+
+/* 2. hide-on-scroll bar */
+.mx-bar { transition: transform .45s cubic-bezier(0.4, 0, 0.2, 1); will-change: transform; }
+.mx-bar.mx-bar-hidden { transform: translate3d(0, -110%, 0); }
+
+/* 3. row media hover: gentle lift + zoom */
+.xp-thumb {
+  transition: transform .6s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow .6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@media (hover: hover) and (pointer: fine) {
+  .xp-row[href]:hover .xp-thumb {
+    transform: translateY(-6px) scale(1.008);
+    box-shadow: 0 44px 90px -32px rgba(22,22,26,0.24);
+  }
+  .cs-hero img { transition: transform .6s cubic-bezier(0.16, 1, 0.3, 1); }
+  .cs-hero:hover img { transform: scale(1.004); }
+}
+
+/* 4. underline sweep on inline links */
+.prose a, .lede a, .cs-back, .links a, .reach-row {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px; background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size .35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.prose a:hover, .lede a:hover, .cs-back:hover, .links a:hover, .reach-row:hover {
+  background-size: 100% 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mx-cursor { display: none; }
+  .mx-bar { transition: none; }
+  .xp-thumb, .cs-hero img { transition: none; }
+}

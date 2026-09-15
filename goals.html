@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Goals · Malaika Saini</title>
+  <meta name="description" content="Goals: redesigning a productivity Chrome extension that was losing 81.79% of users in the first session. Case study by Malaika Saini.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="bar">
+    <a aria-label='Malaika Saini' class='mark' href='index.html'>
+      <span aria-hidden="true">Malaika&nbsp;S</span><span class="mark-rest" aria-hidden="true"><span>a</span><span>i</span><span>n</span><span>i</span></span><span class="mark-dot" aria-hidden="true">.</span>
+    </a>
+    <div class="reach">
+      <button type="button" class="btn" data-contact aria-expanded="false" aria-controls="reachList">Get in touch</button>
+      <div class="reach-list" id="reachList">
+        <button class="reach-row" type="button" data-copy="malaikasaiini@gmail.com">
+          <span class="reach-v">malaikasaiini@gmail.com</span><span class="reach-act">copy</span>
+        </button>
+        <a class="reach-row" href="https://www.linkedin.com/in/malaika-saini-652b46181/" target="_blank" rel="noopener">
+          <span class="reach-v">LinkedIn</span><span class="reach-act">↗</span>
+        </a>
+        <span class="reach-foot">San Francisco · <span id="cmClock">--:--</span></span>
+      </div>
+    </div>
+  </div>
+
+  <main id="top">
+
+    <section class="sec col cs-top">
+      <a class='cs-back rv in' href='index.html'>← back</a>
+      <p class="label rv in">Case study</p>
+      <h1 class="cs-title rv in">Goals</h1>
+      <p class="cs-sub rv in">A productivity Chrome extension was losing 81.79% of its users in the first session. The founders thought it was the visual design. It was the front door.</p>
+      <dl class="cs-meta rv in"><div><dt>Role</dt><dd>Product Designer</dd></div><div><dt>Team</dt><dd>Stealth startup, remote</dd></div><div><dt>Year</dt><dd>2020</dd></div></dl>
+    </section>
+
+    <section class="sec cs-hero-sec">
+      <div class="cs-wide"><figure class="shot cs-hero rv in"><img src="img/goals-cover.jpg" alt="The redesigned Goals new-tab page, the final product"></figure></div>
+    </section>
+
+    <section class="sec col cs-intro">
+      <div class="prose"><p class="rv">When I came onto the project, 81.79% of people who installed the extension deleted it in the same session. 1,519 downloads had produced 254 registrations. The founders' hypothesis was that the interface looked dated.</p><p class="rv">The research said otherwise. People were not bouncing off the aesthetics, they were bouncing off being asked to register before they had seen the thing work. So the redesign fixed the entry, then made the interface something worth staying for, and left behind a component system the team could ship new features on.</p></div>
+    </section>
+
+    <section class="step">
+      <div class="step-head">
+        <p class="step-kicker rv">The problem</p>
+        <h2 class="step-title rv">The numbers that started it</h2>
+        <p class="step-note rv">1,519 downloads, 254 registrations, and 81.79% of users deleting the extension inside the first session.</p>
+      </div>
+      <div class="cs-wide"><figure class="shot rv"><img src="img/goals-numbers.jpg" alt="Metrics: 1519 downloads, 254 registrations, 81.79% deleting in the first session." loading="lazy"><figcaption>Where it stood.</figcaption></figure></div>
+    </section>
+
+    <section class="step">
+      <div class="step-head">
+        <p class="step-kicker rv">Research</p>
+        <h2 class="step-title rv">Mapping the drop, emotion by emotion</h2>
+        <p class="step-note rv">Walking the first session step by step - Chrome store, registration, onboarding - and recording what people said at each one. The store visit is optimistic. Registration is where it turns: "I don't want to sign up without seeing some value." Onboarding then fails to explain what the widgets are for.</p>
+      </div>
+      <div class="cs-wide"><figure class="shot rv"><img src="img/goals-dropoff.jpg" alt="First session flow with user quotes and emotional reactions at each step." loading="lazy"><figcaption>First-session flow.</figcaption></figure></div>
+    </section>
+
+    <section class="step">
+      <div class="step-head">
+        <p class="step-kicker rv">The calls</p>
+        <h2 class="step-title rv">Skip registration, teach the widgets, reward progress</h2>
+        <p class="step-note rv">Three changes. Drop registration until the user has felt the value, then ask with a reason - sync across devices, keep your history. Walk through the main widgets step by step instead of dropping people into a blank dashboard. Add small achievements so early wins register as wins.</p>
+      </div>
+      <div class="cs-wide"><figure class="shot rv"><img src="img/goals-severity.jpg" alt="Severity plot prioritising usability issues by user value and ease of fixing." loading="lazy"><figcaption>Prioritising by impact against effort.</figcaption></figure></div>
+    </section>
+
+    <section class="step">
+      <div class="step-head">
+        <p class="step-kicker rv">Structure</p>
+        <h2 class="step-title rv">Wireframes before pixels</h2>
+        <p class="step-note rv">Flows and features laid out in grey, so the argument about what appears when got settled before anything looked finished.</p>
+      </div>
+      <div class="cs-wide"><figure class="shot rv"><img src="img/goals-wireframes.jpg" alt="Grey wireframes of the extension's flows and features." loading="lazy"><figcaption>Wireframes.</figcaption></figure></div>
+    </section>
+
+    <section class="step">
+      <div class="step-head">
+        <p class="step-kicker rv">Before</p>
+        <h2 class="step-title rv">What it looked like</h2>
+        <p class="step-note rv">Cluttered widgets, no hierarchy, and nothing telling a first-time user what to do with any of it.</p>
+      </div>
+      <div class="cs-wide"><figure class="shot rv"><img src="img/goals-before.jpg" alt="The original Goals dashboard before redesign." loading="lazy"><figcaption>Before.</figcaption></figure></div>
+    </section>
+
+    <section class="step">
+      <div class="step-head">
+        <p class="step-kicker rv">After</p>
+        <h2 class="step-title rv">What it became</h2>
+        <p class="step-note rv">One clear surface: the clock, the day's focus, and the widgets arranged so the useful thing is the obvious thing. Broken widgets fixed rather than restyled.</p>
+      </div>
+      <div class="cs-wide"><figure class="shot rv"><img src="img/goals-after.jpg" alt="The redesigned Goals dashboard." loading="lazy"><figcaption>After.</figcaption></figure></div>
+    </section>
+
+    <section class="step">
+      <div class="step-head">
+        <p class="step-kicker rv">After</p>
+        <h2 class="step-title rv">The widget layer</h2>
+        <p class="step-note rv">Widgets became a set rather than a pile - consistent shapes, consistent states, and room for the next feature without a redesign.</p>
+      </div>
+      <div class="cs-wide"><figure class="shot rv"><img src="img/goals-widgets.jpg" alt="Redesigned widget set on the new dashboard." loading="lazy"><figcaption>Widgets.</figcaption></figure></div>
+    </section>
+
+    <section class="step">
+      <div class="step-head">
+        <p class="step-kicker rv">System</p>
+        <h2 class="step-title rv">Built to be shipped on</h2>
+        <p class="step-note rv">The technical goal was a scalable UI system for rapid feature work. Components were built and tested in Storybook with React, and documented down to alignment, buttons and states, so a small team could add features without redrawing the basics.</p>
+      </div>
+      <div class="cs-wide"><figure class="shot rv"><img src="img/goals-system.jpg" alt="Component documentation covering alignment, buttons and states." loading="lazy"><figcaption>Component documentation.</figcaption></figure></div>
+    </section>
+
+    <section class="step">
+      <div class="step-head">
+        <p class="step-kicker rv">Process</p>
+        <h2 class="step-title rv">The exploration behind it</h2>
+        <p class="step-note rv">Rounds of layout and treatment before the direction settled.</p>
+      </div>
+      <div class="cs-wide"><figure class="shot rv"><img src="img/goals-explore.jpg" alt="Grid of design explorations for the Goals extension." loading="lazy"><figcaption>Explorations.</figcaption></figure></div>
+    </section>
+
+    <section class="sec col">
+      <p class="label rv">Where it landed</p>
+      <div class="prose"><p class="rv">The redesign moved the product from cluttered and ineffective to clean and usable, opened the door to a subscription model, and left the team a design system they could build on.</p><p class="rv">The lesson I kept: when a stakeholder tells you the problem is how it looks, check where people actually leave.</p></div>
+      <div class="links rv">
+        <a href='index.html'>← back to work</a>
+        <a href="mailto:malaikasaiini@gmail.com">malaikasaiini@gmail.com</a>
+      </div>
+    </section>
+
+    <div class="closing">
+      <canvas class="dusk" id="dusk" aria-hidden="true"></canvas>
+      <footer class="foot">
+        <span>Malaika Saini © 2026</span>
+        <span class="clock" id="clock">--:--</span>
+      </footer>
+    </div>
+
+  </main>
+
+  <script src="field.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+

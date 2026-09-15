@@ -1,0 +1,26 @@
+/* Landing restructure: hero imagery always inline (Cloudflare move) */
+.xp-more { grid-template-rows: 1fr; }
+.xp-more-in { overflow: visible; }
+.xp-desc { opacity: 1; transform: none; transition: none; }
+.xp:hover .xp-row:not(:hover) { opacity: 1; }
+.xp-row:hover .xp-line { transform: none; }
+
+/* covers + text share the intro column width, edges flush */
+.xp-thumb {
+  width: 100%;
+  max-width: none;
+  margin: 22px 0 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(22,22,26,0.08);
+  box-shadow: 0 30px 70px -30px rgba(22,22,26,0.16);
+}
+.xp-line { display: block; padding: 0 0 10px; }
+.xp-work {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(26px, 3vw, 32px);
+  line-height: 1.1; letter-spacing: -0.015em;
+}
+.xp-desc { padding: 0 0 26px; max-width: none; }
+@media (max-width: 640px) {
+  .xp-thumb { border-radius: 10px; margin: 16px 0 14px; }
+}

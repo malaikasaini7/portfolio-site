@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RIPL · Malaika Saini</title>
+  <meta name="description" content="RIPL: a watch and app that help you stay with a task by removing the constant time check, while sharpening how well you predict time. Case study by Malaika Saini.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="bar">
+    <a aria-label='Malaika Saini' class='mark' href='index.html'>
+      <span aria-hidden="true">Malaika&nbsp;S</span><span class="mark-rest" aria-hidden="true"><span>a</span><span>i</span><span>n</span><span>i</span></span><span class="mark-dot" aria-hidden="true">.</span>
+    </a>
+    <div class="reach">
+      <button type="button" class="btn" data-contact aria-expanded="false" aria-controls="reachList">Get in touch</button>
+      <div class="reach-list" id="reachList">
+        <button class="reach-row" type="button" data-copy="malaikasaiini@gmail.com">
+          <span class="reach-v">malaikasaiini@gmail.com</span><span class="reach-act">copy</span>
+        </button>
+        <a class="reach-row" href="https://www.linkedin.com/in/malaika-saini-652b46181/" target="_blank" rel="noopener">
+          <span class="reach-v">LinkedIn</span><span class="reach-act">↗</span>
+        </a>
+        <span class="reach-foot">San Francisco · <span id="cmClock">--:--</span></span>
+      </div>
+    </div>
+  </div>
+
+  <main id="top">
+
+    <section class="sec col cs-top">
+      <a class='cs-back rv in' href='index.html'>← back</a>
+      <p class="label rv in">Case study</p>
+      <h1 class="cs-title rv in">RIPL</h1>
+      <p class="cs-sub rv in">A watch and app that help you stay with a task by taking the clock out of the way, while quietly sharpening how well you judge time.</p>
+      <dl class="cs-meta rv in"><div><dt>Role</dt><dd>UX/UI, visual system, motion</dd></div><div><dt>Team</dt><dd>Individual project</dd></div><div><dt>Year</dt><dd>2020</dd></div></dl>
+    </section>
+
+    <section class="sec cs-hero-sec">
+      <div class="cs-wide"><figure class="shot cs-hero rv in"><img src="img/ripl-monitor.jpg" alt="The Ripl watch face, the final product"></figure></div>
+    </section>
+
+    <section class="sec col cs-intro">
+      <div class="prose"><p class="rv">Watching the clock while you work makes the work worse. The research is consistent on it: people who keep checking the time lose morale and creativity compared with people running on their own sense of time. But nobody can drop the clock entirely, because the day still has to be planned.</p><p class="rv">So I designed for both. RIPL is a watch and companion app that strips the numbers out of the moment you are working, and gives them back afterwards as feedback: how long you thought that would take, how long it actually took, and how that gap is closing.</p></div>
+    </section>
+
+    <section class="step">
+      <div class="step-head">
+        <p class="step-kicker rv">Concept video</p>
+        <h2 class="step-title rv">The watch concept, in motion</h2>
+      </div>
+      <div class="cs-wide"><figure class="shot rv"><div class="video-wrap"><iframe src="https://player.vimeo.com/video/470273263?title=0&amp;byline=0&amp;portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="RIPL watch concept video"></iframe></div><figcaption>RIPL watch concept.</figcaption></figure></div>
+    </section>
+
+    <section class="step">
+      <div class="step-head">
+        <p class="step-kicker rv">The loop</p>
+        <h2 class="step-title rv">Four moves, once a day</h2>
+        <p class="step-note rv">Set the tasks and plan the day in the app, sync to the watch over bluetooth, monitor and switch tasks from the wrist while you work, then look at how your predictions did. The last step is the point: everything else exists to make it possible.</p>
+      </div>
+      <div class="cs-wide"><figure class="shot rv"><img src="img/ripl-loop.jpg" alt="Diagram of the RIPL loop: set tasks, sync, monitor and switch, analyse and improve." loading="lazy"><figcaption>The loop.</figcaption></figure></div>
+    </section>
+
+    <section class="step">
+      <div class="step-head">
+        <p class="step-kicker rv">01</p>
+        <h2 class="step-title rv">Monitor, pause and switch, from the wrist</h2>
+        <p class="step-note rv">The face is a ripple, not a countdown. Progress reads as a shape rather than a number, so a glance tells you where you are without pulling you back into arithmetic. The bezel switches tasks.</p>
+      </div>
+      <div class="cs-wide"><figure class="shot rv"><img src="img/ripl-monitor.jpg" alt="RIPL watch face showing the ripple progress dial." loading="lazy"><figcaption>The watch.</figcaption></figure></div>
+    </section>
+
+    <section class="step">
+      <div class="step-head">
+        <p class="step-kicker rv">02</p>
+        <h2 class="step-title rv">Sync over bluetooth</h2>
+        <p class="step-note rv">One pairing screen, one confirmation. The phone holds the plan, the watch holds the moment, and neither asks you to set the same thing twice.</p>
+      </div>
+      <div class="cs-wide"><figure class="shot rv"><img src="img/ripl-sync.jpg" alt="Two phone screens showing the RIPL watch sync flow." loading="lazy"><figcaption>Sync.</figcaption></figure></div>
+    </section>
+
+    <section class="step">
+      <div class="step-head">
+        <p class="step-kicker rv">03</p>
+        <h2 class="step-title rv">Set the tasks, plan the day</h2>
+        <p class="step-note rv">Each task gets your estimate of how long it will take. That estimate is the input the whole system learns from, so the ask is small and asked once, at the moment you already have an opinion.</p>
+      </div>
+      <div class="cs-wide"><figure class="shot rv"><img src="img/ripl-plan.jpg" alt="RIPL app screens for adding tasks and planning the day." loading="lazy"><figcaption>Plan.</figcaption></figure></div>
+    </section>
+
+    <section class="step">
+      <div class="step-head">
+        <p class="step-kicker rv">04</p>
+        <h2 class="step-title rv">Analyse, learn, improve the prediction</h2>
+        <p class="step-note rv">Afterwards the numbers come back: predicted against actual, by task and over time. The feedback lands when it is useful and stays out of the way when it is not.</p>
+      </div>
+      <div class="cs-wide"><figure class="shot rv"><img src="img/ripl-analyze.jpg" alt="RIPL analysis view on phone and watch showing predicted versus actual time." loading="lazy"><figcaption>Analysis.</figcaption></figure></div>
+    </section>
+
+    <section class="step">
+      <div class="step-head">
+        <p class="step-kicker rv">Research</p>
+        <h2 class="step-title rv">A week of logging my own hours</h2>
+        <p class="step-note rv">I logged my hourly data and a few other people's for a week to see what conscious clock-watching does. Working to the clock was consistently stressful, nobody predicted their own time well, and the time people gave to work was routinely underestimated next to chores. That gap became the product.</p>
+      </div>
+      <div class="cs-wide"><figure class="shot rv"><img src="img/ripl-research.jpg" alt="Time-logging research grid with the questions being tested." loading="lazy"><figcaption>Design research.</figcaption></figure></div>
+    </section>
+
+    <section class="step">
+      <div class="step-head">
+        <p class="step-kicker rv">Branding</p>
+        <h2 class="step-title rv">Ripples, and a gradient borrowed from the sky</h2>
+        <p class="step-note rv">The ripple is water: one action, spreading outward, standing in for time passing. The gradient runs sunrise to sunset across four colours, so the interface shifts with the day rather than sitting flat on black.</p>
+      </div>
+      <div class="cs-wide"><figure class="shot rv"><img src="img/ripl-brand.jpg" alt="RIPL brand system: typeface, logo meaning and gradient." loading="lazy"><figcaption>Identity.</figcaption></figure></div>
+    </section>
+
+    <section class="step">
+      <div class="step-head">
+        <p class="step-kicker rv">Branding</p>
+        <h2 class="step-title rv">Where the gradient came from</h2>
+        <p class="step-note rv">Subtle sunrise into subtle sunset, sampled and reduced until it worked at watch size against a dark face.</p>
+      </div>
+      <div class="cs-wide"><figure class="shot rv"><img src="img/ripl-gradient.jpg" alt="Gradient exploration for the RIPL logo, from sunrise to sunset tones." loading="lazy"><figcaption>Gradient study.</figcaption></figure></div>
+    </section>
+
+    <section class="sec col">
+      <p class="label rv">Where it landed</p>
+      <div class="prose"><p class="rv">The design holds one line: quantitative when you are planning or reviewing, qualitative while you are actually working. Everything on the watch face follows from that.</p><p class="rv">RIPL was an individual project, taken from research through interface, motion and identity.</p></div>
+      <div class="links rv">
+        <a href='index.html'>← back to work</a>
+        <a href="mailto:malaikasaiini@gmail.com">malaikasaiini@gmail.com</a>
+      </div>
+    </section>
+
+    <div class="closing">
+      <canvas class="dusk" id="dusk" aria-hidden="true"></canvas>
+      <footer class="foot">
+        <span>Malaika Saini © 2026</span>
+        <span class="clock" id="clock">--:--</span>
+      </footer>
+    </div>
+
+  </main>
+
+  <script src="field.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+
