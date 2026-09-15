@@ -81,6 +81,16 @@
 
     <section class="step">
       <div class="step-head">
+        <p class="step-kicker rv">Decision 1</p>
+        <h2 class="step-title rv">Ask first, then let the AI volunteer</h2>
+        <p class="step-note rv">A raised hand and an AI alert look similar on screen, but they ask for different levels of trust. When the agent asks for help, the product can be useful even if the path is a little clunky. When the AI interrupts a manager, one bad alert makes the next one easier to ignore. I would ship the ask-first flow before the AI-volunteers flow, then earn the right to interrupt.</p>
+        <p class="step-trade rv">More automation, or fewer false interruptions.</p>
+      </div>
+    </section>
+
+
+    <section class="step">
+      <div class="step-head">
         <p class="step-kicker rv">Closed calls &mdash; 1 of 4</p>
         <h2 class="step-title rv">Gathering context</h2>
         <p class="step-note rv">Manager immediately understands the customer&rsquo;s pain point the moment they open a completed call&rsquo;s transcript to review an agent&rsquo;s handling of the situation.</p>
@@ -99,12 +109,40 @@
 
     <section class="step">
       <div class="step-head">
+        <p class="step-kicker rv">Decision 3</p>
+        <h2 class="step-title rv">Keep the score and its evidence together</h2>
+        <p class="step-note rv">The scorecard began as a separate grading surface. That asked managers to remember the call while they scored it. We moved the note onto the rubric row and kept the transcript beside it, so the score, the reason, and the exact customer turn stayed together.</p>
+        <p class="step-trade rv">A cleaner standalone form, or less context switching and a clearer audit trail.</p>
+      </div>
+    </section>
+
+
+    <section class="step">
+      <div class="step-head">
         <p class="step-kicker rv">Closed calls &mdash; 3 of 4</p>
         <h2 class="step-title rv">Focus specifically on moments of interest</h2>
         <p class="step-note rv">Instead of the manager having to review the entire call, I used AI to surface all moments of interest through the conversation that deserve the attention of the manager when delivering a review of the call.</p>
       </div>
       <div class="cs-wide"><figure class="shot rv"><img src="img/closed-moments.jpg" alt="Moments of interest panel: behavior chips with counts, keyword categories and AI hints." loading="lazy"><figcaption>Moments of interest.</figcaption></figure></div>
     </section>
+
+    <section class="step">
+      <div class="step-head">
+        <p class="step-kicker rv">Decision 2</p>
+        <h2 class="step-title rv">Turn the metric into a path to evidence</h2>
+        <p class="step-note rv">The first versions summarized a call with percentages. They looked analytical, but they did not tell the manager what to do next. We moved to counts, then made every count clickable. A chip opens the timestamped instances and takes the manager straight to the matching turn in the transcript. The metric stopped being a report and became navigation.</p>
+        <p class="step-trade rv">A compact summary, or direct access to the moment behind it.</p>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-head">
+        <p class="step-kicker rv">Where it fails</p>
+        <h2 class="step-title rv">A flat list does not survive a long call</h2>
+        <p class="step-note rv">The shipped panel works on a short call. On a 40-minute call, dozens of detected moments become another long list to scan. Today I would group moments by behavior, collapse the groups by default, and reveal individual timestamps only when the manager asks for them.</p>
+      </div>
+    </section>
+
 
     <section class="step">
       <div class="step-head">
@@ -144,12 +182,39 @@
 
     <section class="step">
       <div class="step-head">
+        <p class="step-kicker rv">Decision 4</p>
+        <h2 class="step-title rv">Keep behavior progress tied to evidence</h2>
+        <p class="step-note rv">The hard part was not drawing the dashboard. It was deciding which metrics deserved to exist. If a number did not change the coaching conversation, it did not make the cut. Progress had to point back to the calls and moments behind it, so a manager could coach from evidence instead of an impression.</p>
+        <p class="step-trade rv">More measurements, or fewer numbers a manager can act on.</p>
+      </div>
+    </section>
+
+
+    <section class="step">
+      <div class="step-head">
         <p class="step-kicker rv">Coaching plan</p>
         <h2 class="step-title rv">Personalised coaching plan</h2>
         <p class="step-note rv">Manager can keep a record and track progress over time across all personalised reviews (score-cards) given to each agent.</p>
       </div>
       <div class="cs-wide"><figure class="shot rv"><img src="img/coaching-plan.jpg" alt="Coaching plan: focus behaviors with targets and a trends chart since the last session." loading="lazy"><figcaption>Coaching plan.</figcaption></figure></div>
     </section>
+
+    <section class="step">
+      <div class="step-head">
+        <p class="step-kicker rv">V0 tradeoff</p>
+        <h2 class="step-title rv">Link to scoring instead of rebuilding it here</h2>
+        <p class="step-note rv">For V0, the coaching plan showed the scorecards and linked back to the scoring tab. We did not rebuild scorecard editing inside the plan. That kept grading in one place and protected the full loop: find the moment, score it, choose the behavior, and record the 1:1.</p>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-head">
+        <p class="step-kicker rv">What I would change</p>
+        <h2 class="step-title rv">Measure behavior change, not only coaching activity</h2>
+        <p class="step-note rv">Four times more coaching sessions showed that managers adopted the workflow. It did not prove that coaching worked. The stronger measure is whether the behavior named in a plan changes across later calls. I would instrument that from the start, alongside time to find a coachable moment and time to complete a review.</p>
+      </div>
+    </section>
+
 
     <section class="sec col">
       <p class="label rv">Results</p>

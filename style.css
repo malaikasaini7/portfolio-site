@@ -308,3 +308,5 @@ a { color: inherit; text-decoration: none; }
 .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
 .shot video { display: block; width: 100%; height: auto; border: 1px solid var(--rule); border-radius: 10px; background: #fff; }
 .cs-hero video { border-radius: 12px; }
+
+.step-trade { font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--ink-3); margin: 14px 0 0; padding-left: 14px; border-left: 2px solid var(--rule); }
