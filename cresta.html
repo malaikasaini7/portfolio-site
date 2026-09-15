@@ -239,6 +239,10 @@
 
   <script src="field.js"></script>
   <script src="script.js"></script>
+<script>
+// Motion covers: nudge playback on first interaction for browsers that block autoplay (battery saver etc.)
+(function(){var go=function(){document.querySelectorAll('video[autoplay]').forEach(function(v){if(v.paused){v.play().catch(function(){})}})};window.addEventListener('load',go);['pointerdown','touchstart','keydown'].forEach(function(e){document.addEventListener(e,go,{once:true,capture:true})});})();
+</script>
 </body>
 </html>
 

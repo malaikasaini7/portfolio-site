@@ -114,7 +114,7 @@
         </a>
 
         <div class="xp-row rv">
-          <div class="xp-more"><div class="xp-more-in"><div class="xp-line">
+          <div class="xp-more"><div class="xp-more-in"><video class="xp-thumb" autoplay loop muted playsinline preload="metadata" poster="img/hero-comcast.jpg" aria-label="Comcast Experience Design: branded hero panning into a collage of product work"><source src="img/hero-comcast.webm" type="video/webm"><source src="img/hero-comcast.mp4" type="video/mp4"></video><div class="xp-line">
             <span class="xp-work">Comcast</span>
           </div><p class="xp-desc">
             Rediagnosed checkout drop-off as a cost-transparency problem and rebuilt around real-time pricing clarity, lifting mobile conversion 45%.
@@ -132,8 +132,8 @@
         </a>
 
         <a class='xp-row rv' href='ripl.html' rel='noopener' target='_blank'>
-          <div class="xp-more"><div class="xp-more-in"><img class="xp-thumb" src="img/hero-ripl.jpg" alt="Ripl - project hero image" loading="lazy"><div class="xp-line">
-            <span class="xp-work">School of Visual Arts</span>
+          <div class="xp-more"><div class="xp-more-in"><video class="xp-thumb" autoplay loop muted playsinline preload="metadata" poster="img/hero-ripl-live.jpg" aria-label="Ripl watch concept: rippling time rings on the watch face"><source src="img/hero-ripl-live.webm" type="video/webm"><source src="img/hero-ripl-live.mp4" type="video/mp4"></video><div class="xp-line">
+            <span class="xp-work">Ripl</span>
           </div><p class="xp-desc">
             A smartwatch and mobile system that helps you stay with a task by removing constant time checks, while still building a feel for how long things actually take.
             <span class="xp-role">UX/UI, Visual &amp; Motion Design</span>
@@ -182,6 +182,10 @@
   <script src="field.js"></script>
   <script src="script.js"></script>
   <script src="micro.js"></script>
+<script>
+// Motion covers: nudge playback on first interaction for browsers that block autoplay (battery saver etc.)
+(function(){var go=function(){document.querySelectorAll('video[autoplay]').forEach(function(v){if(v.paused){v.play().catch(function(){})}})};window.addEventListener('load',go);['pointerdown','touchstart','keydown'].forEach(function(e){document.addEventListener(e,go,{once:true,capture:true})});})();
+</script>
 </body>
 </html>
 
