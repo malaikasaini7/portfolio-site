@@ -14,6 +14,9 @@
   border: 1px solid rgba(22,22,26,0.08);
   box-shadow: 0 30px 70px -30px rgba(22,22,26,0.16);
 }
+/* Mobile Safari can paint a white video layer before or between decoded frames.
+   Keep a real image in the DOM so the Google cover is never blank on iPhone. */
+.xp-thumb-google-mobile { display: none; }
 .xp-line { display: block; padding: 0 0 10px; }
 .xp-work {
   font-family: var(--serif); font-weight: 400;
@@ -23,4 +26,6 @@
 .xp-desc { padding: 0 0 26px; max-width: none; }
 @media (max-width: 640px) {
   .xp-thumb { border-radius: 10px; margin: 16px 0 14px; }
+  .xp-thumb-google-video { display: none; }
+  .xp-thumb-google-mobile { display: block; }
 }
