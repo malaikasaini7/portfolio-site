@@ -45,7 +45,15 @@
       <div class="col">
         <h1 class="hey rv in">Hey,</h1>
 
-        <canvas class="field" id="field" aria-hidden="true"></canvas>
+        <div class="scratch-card rv in" id="scratchCard">
+          <div class="scratch-reveal">
+            <img src="img/tech-roast-reveal.gif" alt="Malaika at the Tech Roast Show">
+            <p><span>Fun fact</span>I got roasted at a Tech Roast Show in front of 500+ people.</p>
+          </div>
+          <canvas class="field" id="field" aria-label="Scratch the moving colour field to reveal a fun fact"></canvas>
+          <p class="scratch-hint" id="scratchHint">scratch to reveal <span>↗</span></p>
+          <button class="scratch-reset" id="scratchReset" type="button">replay</button>
+        </div>
 
         <p class="lede rv in">
           I’m <b>Malaika</b>, a product designer with 6+ years of experience specialising in human-AI interactions. Designing for the coming decade of AI adoption, deciding how much autonomy to allow models, when to share reasoning and how to earn the trust of the human will define the nature of these interactions.
@@ -191,5 +199,42 @@
 // Motion covers: nudge playback on first interaction for browsers that block autoplay (battery saver etc.)
 (function(){var go=function(){document.querySelectorAll('video[autoplay]').forEach(function(v){if(v.paused){v.play().catch(function(){})}})};window.addEventListener('load',go);['pointerdown','touchstart','keydown'].forEach(function(e){document.addEventListener(e,go,{once:true,capture:true})});})();
 </script>
+
+<style>
+/* Scratchable hero: the moving WebGL field erases to the story underneath. */
+.scratch-card{position:relative;width:100%;height:clamp(180px,29vh,290px);margin:2px 0 4px;overflow:hidden;border-radius:28px;isolation:isolate;background:#080808;touch-action:none;cursor:crosshair}
+.scratch-card .field{position:absolute;inset:0;width:100%;height:100%;margin:0;border-radius:inherit;z-index:2}
+.scratch-card .field.is-scratching{pointer-events:none}
+.scratch-reveal{position:absolute;inset:0;z-index:1;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(150px,1fr);background:#080808;color:#faf9f6}
+.scratch-reveal img{width:100%;height:100%;object-fit:cover;object-position:center 38%}
+.scratch-reveal p{align-self:end;margin:0;padding:clamp(18px,3vw,30px);font-family:var(--serif);font-size:clamp(21px,3.5vw,32px);line-height:1.02;letter-spacing:-.025em}
+.scratch-reveal p span{display:block;margin-bottom:10px;font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#e8ff78}
+.scratch-hint{position:absolute;z-index:4;left:50%;top:50%;transform:translate(-50%,-50%);margin:0;padding:9px 14px;border-radius:999px;background:rgba(247,246,242,.84);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font:500 12px/1 var(--sans);letter-spacing:.06em;color:#252529;pointer-events:none;transition:opacity .35s ease}
+.scratch-hint span{display:inline-block;margin-left:4px;animation:scratchNudge 1.8s ease-in-out infinite}.scratch-card.has-started .scratch-hint{opacity:0}
+.scratch-reset{position:absolute;z-index:4;right:12px;bottom:12px;border:1px solid rgba(250,249,246,.35);border-radius:999px;padding:8px 12px;background:rgba(10,10,10,.62);backdrop-filter:blur(8px);color:#faf9f6;font:500 11px/1 var(--sans);letter-spacing:.05em;opacity:0;pointer-events:none;transition:opacity .25s ease;cursor:pointer}.scratch-card.is-revealed .scratch-reset{opacity:1;pointer-events:auto}
+@keyframes scratchNudge{0%,100%{transform:translate(0,0)}50%{transform:translate(5px,-5px)}}
+@media(max-width:640px){.scratch-card{height:210px;border-radius:18px}.scratch-reveal{grid-template-columns:1.45fr 1fr}.scratch-reveal p{font-size:20px;padding:16px}.scratch-reveal p span{font-size:9px;margin-bottom:7px}.scratch-reset{right:9px;bottom:9px}}
+@media(prefers-reduced-motion:reduce){.scratch-hint span{animation:none}}
+</style>
+<script>
+/* Paint the live field into an overlay canvas, then erase it under the pointer. */
+(function(){
+  'use strict';
+  var card=document.getElementById('scratchCard'), field=document.getElementById('field'), reset=document.getElementById('scratchReset');
+  if(!card||!field)return;
+  var layer=document.createElement('canvas');layer.className='scratch-layer';layer.setAttribute('aria-hidden','true');
+  Object.assign(layer.style,{position:'absolute',inset:'0',width:'100%',height:'100%',zIndex:'3',pointerEvents:'none'});card.insertBefore(layer,document.getElementById('scratchHint'));
+  var ctx=layer.getContext('2d'),drawing=false,last=null,dpr=1,started=false;
+  function cover(){var r=card.getBoundingClientRect();dpr=Math.min(devicePixelRatio||1,2);layer.width=Math.round(r.width*dpr);layer.height=Math.round(r.height*dpr);ctx.globalCompositeOperation='source-over';ctx.clearRect(0,0,layer.width,layer.height);try{ctx.drawImage(field,0,0,layer.width,layer.height)}catch(e){} started=false;card.classList.remove('has-started','is-revealed');field.style.visibility='visible';requestAnimationFrame(function(){field.style.visibility='hidden'})}
+  function point(e){var r=layer.getBoundingClientRect();return{x:(e.clientX-r.left)*dpr,y:(e.clientY-r.top)*dpr}}
+  function scratch(a,b){var radius=Math.max(30,layer.width*.06);ctx.globalCompositeOperation='destination-out';ctx.lineCap='round';ctx.lineJoin='round';ctx.lineWidth=radius*2;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();ctx.beginPath();ctx.arc(b.x,b.y,radius,0,Math.PI*2);ctx.fill()}
+  function down(e){if(e.button!==undefined&&e.button!==0)return;if(!started){started=true;card.classList.add('has-started')}drawing=true;last=point(e);card.setPointerCapture&&card.setPointerCapture(e.pointerId);scratch(last,last);e.preventDefault()}
+  function move(e){if(!drawing)return;var p=point(e);scratch(last,p);last=p;e.preventDefault()}
+  function up(){if(!drawing)return;drawing=false;last=null;card.classList.add('is-revealed')}
+  card.addEventListener('pointerdown',down);card.addEventListener('pointermove',move);card.addEventListener('pointerup',up);card.addEventListener('pointercancel',up);reset.addEventListener('click',function(e){e.stopPropagation();field.style.visibility='visible';requestAnimationFrame(cover)});
+  var timer;addEventListener('resize',function(){clearTimeout(timer);timer=setTimeout(function(){field.style.visibility='visible';requestAnimationFrame(cover)},140)});addEventListener('load',function(){setTimeout(cover,250)});setTimeout(cover,700);
+})();
+</script>
+
 </body>
 </html>
