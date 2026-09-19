@@ -47,10 +47,10 @@
 
         <div class="scratch-card rv in" id="scratchCard">
           <div class="scratch-reveal">
-            <video autoplay loop muted playsinline aria-label="Malaika at the Tech Roast Show"><source src="img/4-tech-roast-clean.webm" type="video/webm"><source src="img/5-tech-roast-clean.mp4" type="video/mp4"></video>
+            <video autoplay loop muted playsinline poster="img/7-tech-roast-poster.jpg" aria-label="Malaika at the Tech Roast Show"><source src="img/4-tech-roast-clean.webm" type="video/webm"><source src="img/5-tech-roast-clean.mp4" type="video/mp4"></video>
             <p><span>Fun fact</span>I got roasted at a Tech Roast Show in front of 500+ people.</p>
           </div>
-          <canvas class="field" id="field" aria-label="Scratch the moving colour field to reveal a fun fact"></canvas>
+          <div class="scratch-cover" id="scratchCover" role="img" aria-label="Scratch the moving colour field to reveal a fun fact"></div>
           <p class="scratch-hint" id="scratchHint">scratch to reveal <span>↗</span></p>
           <button class="scratch-reset" id="scratchReset" type="button">replay</button>
         </div>
@@ -201,38 +201,34 @@
 </script>
 
 <style>
-/* Scratchable hero: the moving WebGL field erases to the story underneath. */
+/* Scratchable hero: a moving colour field erases to the story underneath. */
 .scratch-card{position:relative;width:100%;height:clamp(180px,29vh,290px);margin:2px 0 4px;overflow:hidden;border-radius:28px;isolation:isolate;background:#080808;touch-action:none;cursor:crosshair}
-.scratch-card .field{position:absolute;inset:0;width:100%;height:100%;margin:0;border-radius:inherit;z-index:2}
-.scratch-card .field.is-scratching{pointer-events:none}
-.scratch-reveal{position:absolute;inset:0;z-index:1;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(150px,1fr);background:#080808;color:#faf9f6}
-.scratch-reveal video{width:100%;height:100%;object-fit:cover;object-position:center 38%}
-.scratch-reveal p{align-self:end;margin:0;padding:clamp(18px,3vw,30px);font-family:var(--serif);font-size:clamp(21px,3.5vw,32px);line-height:1.02;letter-spacing:-.025em}
-.scratch-reveal p span{display:block;margin-bottom:10px;font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#e8ff78}
-.scratch-hint{position:absolute;z-index:4;left:50%;top:50%;transform:translate(-50%,-50%);margin:0;padding:9px 14px;border-radius:999px;background:rgba(247,246,242,.84);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font:500 12px/1 var(--sans);letter-spacing:.06em;color:#252529;pointer-events:none;transition:opacity .35s ease}
-.scratch-hint span{display:inline-block;margin-left:4px;animation:scratchNudge 1.8s ease-in-out infinite}.scratch-card.has-started .scratch-hint{opacity:0}
+.scratch-cover{position:absolute;inset:0;z-index:3;background:radial-gradient(90% 130% at 76% 12%,#f5f9f7 0 9%,transparent 45%),radial-gradient(85% 130% at 16% 85%,#2e6b43 0 7%,transparent 48%),linear-gradient(125deg,#c3deec,#a6cc79 42%,#2e6b43 76%,#d8eef2);background-size:160% 160%;animation:fieldDrift 10s ease-in-out infinite alternate;will-change:background-position}
+.scratch-reveal{position:absolute;inset:0;z-index:1;background:#080808;color:#faf9f6}
+.scratch-reveal video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 38%}
+.scratch-reveal::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 42%,rgba(5,5,5,.15) 57%,rgba(5,5,5,.94) 100%)}
+.scratch-reveal p{position:absolute;z-index:1;right:0;bottom:0;width:44%;margin:0;padding:clamp(16px,2.6vw,26px);font-family:var(--serif);font-size:clamp(17px,2.7vw,25px);line-height:1.02;letter-spacing:-.025em}
+.scratch-reveal p span{display:block;margin-bottom:8px;font-family:var(--sans);font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#e8ff78}
+.scratch-hint{position:absolute;z-index:4;left:50%;top:50%;transform:translate(-50%,-50%);margin:0;padding:9px 14px;border-radius:999px;background:rgba(247,246,242,.84);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font:500 12px/1 var(--sans);letter-spacing:.06em;color:#252529;pointer-events:none;transition:opacity .35s ease}.scratch-hint span{display:inline-block;margin-left:4px;animation:scratchNudge 1.8s ease-in-out infinite}.scratch-card.has-started .scratch-hint{opacity:0}
 .scratch-reset{position:absolute;z-index:4;right:12px;bottom:12px;border:1px solid rgba(250,249,246,.35);border-radius:999px;padding:8px 12px;background:rgba(10,10,10,.62);backdrop-filter:blur(8px);color:#faf9f6;font:500 11px/1 var(--sans);letter-spacing:.05em;opacity:0;pointer-events:none;transition:opacity .25s ease;cursor:pointer}.scratch-card.is-revealed .scratch-reset{opacity:1;pointer-events:auto}
-@keyframes scratchNudge{0%,100%{transform:translate(0,0)}50%{transform:translate(5px,-5px)}}
-@media(max-width:640px){.scratch-card{height:210px;border-radius:18px}.scratch-reveal{grid-template-columns:1.45fr 1fr}.scratch-reveal p{font-size:20px;padding:16px}.scratch-reveal p span{font-size:9px;margin-bottom:7px}.scratch-reset{right:9px;bottom:9px}}
-@media(prefers-reduced-motion:reduce){.scratch-hint span{animation:none}}
+@keyframes fieldDrift{0%{background-position:10% 15%,85% 75%,0% 50%}100%{background-position:80% 60%,15% 20%,100% 50%}}@keyframes scratchNudge{0%,100%{transform:translate(0,0)}50%{transform:translate(5px,-5px)}}
+@media(max-width:640px){.scratch-card{height:210px;border-radius:18px}.scratch-reveal p{width:48%;font-size:17px;padding:14px}.scratch-reveal::after{background:linear-gradient(90deg,transparent 38%,rgba(5,5,5,.2) 52%,rgba(5,5,5,.96) 100%)}.scratch-reset{right:9px;bottom:9px}}
+@media(prefers-reduced-motion:reduce){.scratch-cover,.scratch-hint span{animation:none}}
 </style>
 <script>
-/* Paint the live field into an overlay canvas, then erase it under the pointer. */
+/* Erase a canvas-built mask over the moving field. */
 (function(){
   'use strict';
-  var card=document.getElementById('scratchCard'), field=document.getElementById('field'), reset=document.getElementById('scratchReset');
-  if(!card||!field)return;
-  var layer=document.createElement('canvas');layer.className='scratch-layer';layer.setAttribute('aria-hidden','true');
-  Object.assign(layer.style,{position:'absolute',inset:'0',width:'100%',height:'100%',zIndex:'3',pointerEvents:'none'});card.insertBefore(layer,document.getElementById('scratchHint'));
-  var ctx=layer.getContext('2d'),drawing=false,last=null,dpr=1,started=false;
-  function cover(){var r=card.getBoundingClientRect();dpr=Math.min(devicePixelRatio||1,2);layer.width=Math.round(r.width*dpr);layer.height=Math.round(r.height*dpr);ctx.globalCompositeOperation='source-over';ctx.clearRect(0,0,layer.width,layer.height);try{ctx.drawImage(field,0,0,layer.width,layer.height)}catch(e){} started=false;card.classList.remove('has-started','is-revealed');field.style.visibility='visible';requestAnimationFrame(function(){field.style.visibility='hidden'})}
-  function point(e){var r=layer.getBoundingClientRect();return{x:(e.clientX-r.left)*dpr,y:(e.clientY-r.top)*dpr}}
-  function scratch(a,b){var radius=Math.max(30,layer.width*.06);ctx.globalCompositeOperation='destination-out';ctx.lineCap='round';ctx.lineJoin='round';ctx.lineWidth=radius*2;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();ctx.beginPath();ctx.arc(b.x,b.y,radius,0,Math.PI*2);ctx.fill()}
-  function down(e){if(e.button!==undefined&&e.button!==0)return;if(!started){started=true;card.classList.add('has-started')}drawing=true;last=point(e);card.setPointerCapture&&card.setPointerCapture(e.pointerId);scratch(last,last);e.preventDefault()}
+  var card=document.getElementById('scratchCard'),cover=document.getElementById('scratchCover'),reset=document.getElementById('scratchReset');if(!card||!cover)return;
+  var mask=document.createElement('canvas'),ctx=mask.getContext('2d'),drawing=false,last=null,dpr=1;
+  function apply(){var url='url('+mask.toDataURL()+')';cover.style.webkitMaskImage=url;cover.style.maskImage=url;cover.style.webkitMaskSize='100% 100%';cover.style.maskSize='100% 100%'}
+  function paint(){var r=card.getBoundingClientRect();dpr=Math.min(devicePixelRatio||1,2);mask.width=Math.round(r.width*dpr);mask.height=Math.round(r.height*dpr);ctx.globalCompositeOperation='source-over';ctx.fillStyle='#fff';ctx.fillRect(0,0,mask.width,mask.height);apply();card.classList.remove('has-started','is-revealed');last=null}
+  function point(e){var r=card.getBoundingClientRect();return{x:(e.clientX-r.left)*dpr,y:(e.clientY-r.top)*dpr}}
+  function scratch(a,b){var radius=Math.max(30,mask.width*.06);ctx.globalCompositeOperation='destination-out';ctx.lineCap='round';ctx.lineJoin='round';ctx.lineWidth=radius*2;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();ctx.beginPath();ctx.arc(b.x,b.y,radius,0,Math.PI*2);ctx.fill();apply()}
+  function down(e){if(e.button!==undefined&&e.button!==0)return;drawing=true;last=point(e);card.setPointerCapture&&card.setPointerCapture(e.pointerId);card.classList.add('has-started');scratch(last,last);e.preventDefault()}
   function move(e){if(!drawing)return;var p=point(e);scratch(last,p);last=p;e.preventDefault()}
   function up(){if(!drawing)return;drawing=false;last=null;card.classList.add('is-revealed')}
-  card.addEventListener('pointerdown',down);card.addEventListener('pointermove',move);card.addEventListener('pointerup',up);card.addEventListener('pointercancel',up);reset.addEventListener('click',function(e){e.stopPropagation();field.style.visibility='visible';requestAnimationFrame(cover)});
-  var timer;addEventListener('resize',function(){clearTimeout(timer);timer=setTimeout(function(){field.style.visibility='visible';requestAnimationFrame(cover)},140)});addEventListener('load',function(){setTimeout(cover,250)});setTimeout(cover,700);
+  card.addEventListener('pointerdown',down);card.addEventListener('pointermove',move);card.addEventListener('pointerup',up);card.addEventListener('pointercancel',up);reset.addEventListener('click',function(e){e.stopPropagation();paint()});var timer;addEventListener('resize',function(){clearTimeout(timer);timer=setTimeout(paint,140)});paint();
 })();
 </script>
 
