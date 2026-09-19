@@ -192,7 +192,7 @@
 
   </main>
 
-  <script src="field.js"></script>
+  <script src="field.js?v=3d4a2c6"></script>
   <script src="script.js"></script>
   <script src="micro.js"></script>
 <script>
@@ -226,16 +226,15 @@
   function apply(){maskEl(cover,'url('+mask.toDataURL()+')')}
   function softRect(w,h){
     edge.width=w;edge.height=h;var im=edgeCtx.createImageData(w,h),a=im.data,i=0;
-    /* A wide rounded rectangle with a long alpha falloff, matching the original
-       hero's edgeless field rather than exposing a hard canvas perimeter. */
-    var feather=Math.max(34*dpr,Math.min(w,h)*.15),inset=feather*.38,radius=Math.max(26*dpr,Math.min(w,h)*.11);
-    var cx=w/2,cy=h/2,bx=w/2-inset-radius,by=h/2-inset-radius;
+    /* Match the field shader's original edge fade exactly. The scratch cover
+       itself stays unmasked at rest, so the WebGL field keeps its native look. */
+    var m=Math.min(w,h),radius=m*.14,fade=m*.18,cx=w/2,cy=h/2,bx=w/2,by=h/2;
+    function smooth(t){return t*t*(3-2*t)}
     for(var y=0;y<h;y++)for(var x=0;x<w;x++){
-      var qx=Math.abs(x-cx)-bx,qy=Math.abs(y-cy)-by;
-      var outside=Math.hypot(Math.max(qx,0),Math.max(qy,0)),inside=Math.min(Math.max(qx,qy),0);
-      var signed=outside+inside-radius,t=Math.max(0,Math.min(1,.5-signed/feather));
-      t=t*t*(3-2*t);t=t*t*(3-2*t);
-      a[i++]=255;a[i++]=255;a[i++]=255;a[i++]=Math.round(255*t);
+      var qx=Math.abs(x-cx)-bx+radius,qy=Math.abs(y-cy)-by+radius;
+      var d=Math.min(Math.max(qx,qy),0)+Math.hypot(Math.max(qx,0),Math.max(qy,0))-radius;
+      var t=Math.max(0,Math.min(1,-d/fade)),alpha=Math.pow(smooth(t),.9);
+      a[i++]=255;a[i++]=255;a[i++]=255;a[i++]=Math.round(255*alpha);
     }
     edgeCtx.putImageData(im,0,0);
   }
