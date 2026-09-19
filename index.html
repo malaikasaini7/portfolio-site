@@ -192,7 +192,7 @@
 
   </main>
 
-  <script src="field.js?v=3d4a2c7"></script>
+  <script src="field.js?v=3d4a2c8"></script>
   <script src="script.js"></script>
   <script src="micro.js"></script>
 <script>
@@ -203,7 +203,7 @@
 <style>
 /* Scratchable hero: the original wide moving field erases to the roast underneath. */
 .scratch-card{position:relative;width:100%;height:clamp(255px,36vh,360px);margin:2px 0 4px;isolation:isolate;background:transparent;touch-action:none;cursor:crosshair}
-.scratch-cover{position:absolute;inset:0;z-index:3;background:transparent;will-change:mask-image,-webkit-mask-image}
+.scratch-cover{position:absolute;inset:0;z-index:3;background:linear-gradient(160deg,#f5f9f7,#c3deec 35%,#a6cc79 70%,#2e6b43);will-change:mask-image,-webkit-mask-image}
 .scratch-cover .field{position:absolute;inset:0;display:block;width:100%;height:100%;margin:0;border-radius:0;pointer-events:none}
 .scratch-reveal{position:absolute;inset:0;z-index:1;overflow:hidden;background:#101010;color:#faf9f6;opacity:0;transition:opacity .18s ease}.scratch-card.has-started .scratch-reveal,.scratch-card.is-revealed .scratch-reveal{opacity:1}
 .scratch-reveal video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 38%;border:0}
@@ -226,14 +226,13 @@
   function apply(){maskEl(cover,'url('+mask.toDataURL()+')')}
   function softRect(w,h){
     edge.width=w;edge.height=h;var im=edgeCtx.createImageData(w,h),a=im.data,i=0;
-    /* Match the field shader's original edge fade exactly. The scratch cover
-       itself stays unmasked at rest, so the WebGL field keeps its native look. */
-    var m=Math.min(w,h),radius=m*.14,fade=m*.18,cx=w/2,cy=h/2,bx=w/2,by=h/2;
-    function smooth(t){return t*t*(3-2*t)}
+    /* A generous, continuous four-sided dissolve. It reaches zero before the
+       canvas perimeter so no antialiased row or column can read as a frame. */
+    var fade=Math.min(w,h)*.22;
+    function smooth(t){t=Math.max(0,Math.min(1,t));return t*t*(3-2*t)}
     for(var y=0;y<h;y++)for(var x=0;x<w;x++){
-      var qx=Math.abs(x-cx)-bx+radius,qy=Math.abs(y-cy)-by+radius;
-      var d=Math.min(Math.max(qx,qy),0)+Math.hypot(Math.max(qx,0),Math.max(qy,0))-radius;
-      var t=Math.max(0,Math.min(1,-d/fade)),alpha=Math.pow(smooth(t),.9);
+      var ax=smooth(Math.min(x,w-1-x)/fade),ay=smooth(Math.min(y,h-1-y)/fade);
+      var alpha=Math.pow(ax*ay,.72);
       a[i++]=255;a[i++]=255;a[i++]=255;a[i++]=Math.round(255*alpha);
     }
     edgeCtx.putImageData(im,0,0);
