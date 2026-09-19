@@ -45,15 +45,7 @@
       <div class="col">
         <h1 class="hey rv in">Hey,</h1>
 
-        <div class="scratch-card rv in" id="scratchCard">
-          <div class="scratch-reveal">
-            <video autoplay loop muted playsinline poster="img/7-tech-roast-poster.jpg" aria-label="Malaika at the Tech Roast Show"><source src="img/4-tech-roast-clean.webm" type="video/webm"><source src="img/5-tech-roast-clean.mp4" type="video/mp4"></video>
-            <p><span>Fun fact</span>I got roasted at a Tech Roast Show in front of 500+ people.</p>
-          </div>
-          <canvas class="field scratch-cover" id="field" role="img" aria-label="Scratch the moving colour field to reveal a fun fact"></canvas>
-          <p class="scratch-hint" id="scratchHint">scratch to reveal <span>↗</span></p>
-          <button class="scratch-reset" id="scratchReset" type="button">replay</button>
-        </div>
+        <canvas class="field" id="field" aria-hidden="true"></canvas>
 
         <p class="lede rv in">
           I’m <b>Malaika</b>, a product designer with 6+ years of experience specialising in human-AI interactions. Designing for the coming decade of AI adoption, deciding how much autonomy to allow models, when to share reasoning and how to earn the trust of the human will define the nature of these interactions.
@@ -199,38 +191,5 @@
 // Motion covers: nudge playback on first interaction for browsers that block autoplay (battery saver etc.)
 (function(){var go=function(){document.querySelectorAll('video[autoplay]').forEach(function(v){if(v.paused){v.play().catch(function(){})}})};window.addEventListener('load',go);['pointerdown','touchstart','keydown'].forEach(function(e){document.addEventListener(e,go,{once:true,capture:true})});})();
 </script>
-
-<style>
-/* Scratchable hero: a moving colour field erases to the story underneath. */
-.scratch-card{position:relative;width:100%;height:clamp(270px,38vh,380px);margin:2px 0 4px;overflow:hidden;border-radius:28px;isolation:isolate;background:#080808;touch-action:none;cursor:crosshair}
-.scratch-cover{position:absolute!important;inset:0;z-index:3;width:100%!important;height:100%!important;margin:0!important;border-radius:inherit!important;background:linear-gradient(160deg,#f5f9f7,#c3deec 35%,#a6cc79 70%,#2e6b43);will-change:mask-image,-webkit-mask-image}
-.scratch-reveal{position:absolute;inset:0;z-index:1;background:#080808;color:#faf9f6}
-.scratch-reveal video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 38%}
-.scratch-reveal::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 42%,rgba(5,5,5,.15) 57%,rgba(5,5,5,.94) 100%)}
-.scratch-reveal p{position:absolute;z-index:1;right:0;bottom:0;width:44%;margin:0;padding:clamp(16px,2.6vw,26px);font-family:var(--serif);font-size:clamp(17px,2.7vw,25px);line-height:1.02;letter-spacing:-.025em}
-.scratch-reveal p span{display:block;margin-bottom:8px;font-family:var(--sans);font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#e8ff78}
-.scratch-hint{position:absolute;z-index:4;left:50%;top:50%;transform:translate(-50%,-50%);margin:0;padding:9px 14px;border-radius:999px;background:rgba(247,246,242,.84);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font:500 12px/1 var(--sans);letter-spacing:.06em;color:#252529;pointer-events:none;transition:opacity .35s ease}.scratch-hint span{display:inline-block;margin-left:4px;animation:scratchNudge 1.8s ease-in-out infinite}.scratch-card.has-started .scratch-hint,.scratch-card.is-revealed .scratch-hint{opacity:0}
-.scratch-reset{position:absolute;z-index:4;right:12px;bottom:12px;border:1px solid rgba(250,249,246,.35);border-radius:999px;padding:8px 12px;background:rgba(10,10,10,.62);backdrop-filter:blur(8px);color:#faf9f6;font:500 11px/1 var(--sans);letter-spacing:.05em;opacity:0;pointer-events:none;transition:opacity .25s ease;cursor:pointer}.scratch-card.is-revealed .scratch-reset{opacity:1;pointer-events:auto}
-@keyframes scratchNudge{0%,100%{transform:translate(0,0)}50%{transform:translate(5px,-5px)}}
-@media(max-width:640px){.scratch-card{height:280px;border-radius:18px}.scratch-reveal p{width:48%;font-size:17px;padding:14px}.scratch-reveal::after{background:linear-gradient(90deg,transparent 38%,rgba(5,5,5,.2) 52%,rgba(5,5,5,.96) 100%)}.scratch-reset{right:9px;bottom:9px}}
-@media(prefers-reduced-motion:reduce){.scratch-hint span{animation:none}}
-</style>
-<script>
-/* Erase a canvas-built mask over the moving field. */
-(function(){
-  'use strict';
-  var card=document.getElementById('scratchCard'),cover=document.getElementById('scratchCover'),reset=document.getElementById('scratchReset');if(!card||!cover)return;
-  var mask=document.createElement('canvas'),ctx=mask.getContext('2d'),drawing=false,last=null,dpr=1;
-  function apply(){var url='url('+mask.toDataURL()+')';cover.style.webkitMaskImage=url;cover.style.maskImage=url;cover.style.webkitMaskSize='100% 100%';cover.style.maskSize='100% 100%'}
-  function paint(){var r=card.getBoundingClientRect();dpr=Math.min(devicePixelRatio||1,2);mask.width=Math.round(r.width*dpr);mask.height=Math.round(r.height*dpr);ctx.globalCompositeOperation='source-over';ctx.fillStyle='#fff';ctx.fillRect(0,0,mask.width,mask.height);apply();card.classList.remove('has-started','is-revealed');last=null}
-  function point(e){var r=card.getBoundingClientRect();return{x:(e.clientX-r.left)*dpr,y:(e.clientY-r.top)*dpr}}
-  function scratch(a,b){var radius=Math.max(30,mask.width*.06);ctx.globalCompositeOperation='destination-out';ctx.lineCap='round';ctx.lineJoin='round';ctx.lineWidth=radius*2;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();ctx.beginPath();ctx.arc(b.x,b.y,radius,0,Math.PI*2);ctx.fill();apply()}
-  function down(e){if(e.target.closest&&e.target.closest('button'))return;if(e.button!==undefined&&e.button!==0)return;drawing=true;last=point(e);card.setPointerCapture&&card.setPointerCapture(e.pointerId);card.classList.add('has-started');scratch(last,last);e.preventDefault()}
-  function move(e){if(!drawing)return;var p=point(e);scratch(last,p);last=p;e.preventDefault()}
-  function up(){if(!drawing)return;drawing=false;last=null;card.classList.add('is-revealed')}
-  card.addEventListener('pointerdown',down);card.addEventListener('pointermove',move);card.addEventListener('pointerup',up);card.addEventListener('pointercancel',up);reset.addEventListener('pointerdown',function(e){e.stopPropagation()});reset.addEventListener('click',function(e){e.stopPropagation();paint()});var timer;addEventListener('resize',function(){clearTimeout(timer);timer=setTimeout(paint,140)});paint();
-})();
-</script>
-
 </body>
 </html>
