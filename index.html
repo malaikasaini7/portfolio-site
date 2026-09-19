@@ -203,7 +203,7 @@
 <style>
 /* Scratchable hero: a moving colour field erases to the story underneath. */
 .scratch-card{position:relative;width:100%;height:clamp(270px,38vh,380px);margin:2px 0 4px;overflow:hidden;border-radius:28px;isolation:isolate;background:#080808;touch-action:none;cursor:crosshair}
-.scratch-cover{position:absolute!important;inset:0;z-index:3;width:100%!important;height:100%!important;margin:0!important;border-radius:inherit!important;will-change:mask-image,-webkit-mask-image}
+.scratch-cover{position:absolute!important;inset:0;z-index:3;width:100%!important;height:100%!important;margin:0!important;border-radius:inherit!important;background:linear-gradient(160deg,#f5f9f7,#c3deec 35%,#a6cc79 70%,#2e6b43);will-change:mask-image,-webkit-mask-image}
 .scratch-reveal{position:absolute;inset:0;z-index:1;background:#080808;color:#faf9f6}
 .scratch-reveal video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 38%}
 .scratch-reveal::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 42%,rgba(5,5,5,.15) 57%,rgba(5,5,5,.94) 100%)}
