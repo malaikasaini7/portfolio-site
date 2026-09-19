@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Malaika Saini · Product Designer</title>
+  <meta name="description" content="Malaika Saini, product designer working on agentic AI systems. Most recently at Google. Previously Cresta, Gan.ai, Comcast.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style-landing-overrides.css">
+  <link rel="stylesheet" href="micro.css">
+</head>
+<body>
+
+  <div class="bar">
+    <a aria-label='Malaika Saini' class='mark' href='index.html#top'>
+      <span aria-hidden="true">Malaika&nbsp;S</span><span class="mark-rest" aria-hidden="true"><span>a</span><span>i</span><span>n</span><span>i</span></span><span class="mark-dot" aria-hidden="true">.</span>
+    </a>
+
+    <div class="reach">
+      <button type="button" class="btn" data-contact aria-expanded="false" aria-controls="reachList">Get in touch</button>
+      <div class="reach-list" id="reachList">
+        <button class="reach-row" type="button" data-copy="malaikasaiini@gmail.com">
+          <span class="reach-v">malaikasaiini@gmail.com</span><span class="reach-act">copy</span>
+        </button>
+        <a class="reach-row" href="https://www.linkedin.com/in/malaika-saini-652b46181/" target="_blank" rel="noopener">
+          <span class="reach-v">LinkedIn</span><span class="reach-act">↗</span>
+        </a>
+        <a class="reach-row" href="https://github.com/malaikasaini7" target="_blank" rel="noopener">
+          <span class="reach-v">GitHub</span><span class="reach-act">↗</span>
+        </a>
+        <span class="reach-foot">San Francisco · <span id="cmClock">--:--</span></span>
+      </div>
+    </div>
+  </div>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="col">
+        <h1 class="hey rv in">Hey,</h1>
+
+        <div class="scratch-card rv in" id="scratchCard">
+          <div class="scratch-reveal">
+            <video autoplay loop muted playsinline poster="img/7-tech-roast-poster.jpg" aria-label="Malaika at the Tech Roast Show"><source src="img/4-tech-roast-clean.webm" type="video/webm"><source src="img/5-tech-roast-clean.mp4" type="video/mp4"></video>
+            <p><span>Fun fact</span>I got roasted at a Tech Roast Show in front of 500+ people.</p>
+          </div>
+          <div class="scratch-cover" id="scratchCover" role="img" aria-label="Scratch the moving colour field to reveal a fun fact"><canvas class="field" id="field" aria-hidden="true"></canvas></div>
+          <p class="scratch-hint" id="scratchHint">scratch to reveal <span>↗</span></p>
+          <button class="scratch-reset" id="scratchReset" type="button">replay</button>
+        </div>
+
+        <p class="lede rv in">
+          I’m <b>Malaika</b>, a product designer specialising in human-AI interactions. Designing for the coming decade of AI adoption, deciding how much autonomy to allow models, when to share reasoning and how to earn the trust of the human will define the nature of these interactions.
+        </p>
+        <p class="lede rv in">
+          Most recently at <b>Google</b>, prev at Cresta, Gan.ai
+        </p>
+        <p class="note rv in">designing for the coming decade of AI-human interactions <span class="orn">⊹</span></p>
+
+        <nav class="keys rv in" id="keys" aria-label="Sections">
+          <span class="keys-say"><span class="on-key">press</span><span class="on-tap">jump to</span></span>
+          <a class='key' data-k='e' href='#experience'><b>E</b><span>xperience</span></a>,
+          <a class='key' data-k='a' href='#about'><b>A</b><span>bout</span></a>,
+          <a class='key' data-k='s' href='#contact'><b>S</b><span>ay hi</span></a>,
+          <a class='key' data-k='g' href='https://github.com/malaikasaini7' target='_blank' rel='noopener'><b>G</b><span>itHub</span></a>.
+          <span class="keys-say">or just keep scrolling ~</span>
+        </nav>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="sec col" id="experience">
+      <p class="label rv">Experience</p>
+      <div class="xp">
+
+        <a class='xp-row rv' href='google.html'>
+          <div class="xp-more"><div class="xp-more-in"><video class="xp-thumb xp-thumb-google-video" autoplay loop muted playsinline preload="metadata" poster="img/hero-google-logo.jpg" aria-label="Google logo animation"><source src="img/hero-google-logo.mp4" type="video/mp4"><source src="img/hero-google-logo.webm" type="video/webm"></video><img class="xp-thumb xp-thumb-google-mobile" src="img/hero-google-logo.jpg" alt="Google" loading="eager"><div class="xp-line">
+            <span class="xp-work">Google</span>
+          </div><p class="xp-desc">
+            Designing AI interactions across Google's enterprise CRM and the Workspace products people use every day.
+            <span class="xp-nda">Work is under NDA, happy to do a walkthrough on a 1:1 call.</span>
+            <span class="xp-role">Product Designer</span>
+          </p></div></div>
+        </a>
+
+        <a class='xp-row rv' href='cresta.html' rel='noopener' target='_blank'>
+          <div class="xp-more"><div class="xp-more-in"><video class="xp-thumb" autoplay loop muted playsinline preload="auto" poster="img/hero-cresta.jpg" aria-label="Cresta Coach animated: live call coaching, post-call moments, scorecard and coaching overview"><source src="img/hero-cresta.webm" type="video/webm"><source src="img/hero-cresta.mp4" type="video/mp4"></video><div class="xp-line">
+            <span class="xp-work">Cresta AI</span>
+          </div><p class="xp-desc">
+            Designed Cresta Coach, an AI-powered coaching workflow that pulls scoring, planning, and progress tracking into one place, letting managers run 4x more coaching sessions without added workload.
+            <span class="xp-role">Product Designer</span>
+          </p></div></div>
+        </a>
+
+        <a class='xp-row rv' href='https://chariot.in/' rel='noopener' target='_blank'>
+          <div class="xp-more"><div class="xp-more-in"><video class="xp-thumb" autoplay loop muted playsinline preload="metadata" poster="img/hero-chariot.jpg" aria-label="Chariot website: scrolling the live homepage from the hero through the product story to the footer"><source src="img/hero-chariot-live.webm" type="video/webm"><source src="img/hero-chariot-live.mp4" type="video/mp4"></video><div class="xp-line">
+            <span class="xp-work">Chariot</span>
+          </div><p class="xp-desc">
+            Designed the website for a frontier AI research lab building audio-native models that listen, reason and speak - one of four teams selected under the IndiaAI Mission. Ongoing UX consulting and web design with the founders from my Gan.ai days.
+            <span class="xp-role">UX Design Consultant</span>
+          </p></div></div>
+        </a>
+
+        <a class='xp-row rv' href='goals.html' rel='noopener' target='_blank'>
+          <div class="xp-more"><div class="xp-more-in"><img class="xp-thumb" src="img/goals-hero.jpg" alt="Goals Chrome extension - project hero image" loading="lazy"><div class="xp-line">
+            <span class="xp-work">Stealth startup</span>
+          </div><p class="xp-desc">
+            Redesigned the onboarding and registration flow for a productivity Chrome extension that was losing 81.79% of users in their first session, building a design system to support it going forward.
+            <span class="xp-role">Product Designer</span>
+          </p></div></div>
+        </a>
+
+        <a class="xp-row rv" href="gan.html">
+          <div class="xp-more"><div class="xp-more-in"><video class="xp-thumb" autoplay loop muted playsinline preload="metadata" poster="img/hero-gan.jpg" aria-label="Gan Studio animated: prompt home, create-video editor, avatar swap, subtitle design and generation"><source src="img/hero-gan.webm" type="video/webm"><source src="img/hero-gan.mp4" type="video/mp4"></video><div class="xp-line">
+            <span class="xp-work">Gan.ai</span>
+          </div><p class="xp-desc">
+            Founding designer on a generative-video AI platform, owning the product from 0 to 1: prototype to Fortune 500-scale pilots and a $5.25M seed round.
+            <span class="xp-role">Founding Product Designer</span>
+          </p></div></div>
+        </a>
+
+        <div class="xp-row rv">
+          <div class="xp-more"><div class="xp-more-in"><video class="xp-thumb" autoplay loop muted playsinline preload="metadata" poster="img/hero-comcast.jpg" aria-label="Comcast Experience Design: branded hero panning into a collage of product work"><source src="img/hero-comcast.webm" type="video/webm"><source src="img/hero-comcast.mp4" type="video/mp4"></video><div class="xp-line">
+            <span class="xp-work">Comcast</span>
+          </div><p class="xp-desc">
+            Rediagnosed checkout drop-off as a cost-transparency problem and rebuilt around real-time pricing clarity, lifting mobile conversion 45%.
+            <span class="xp-role">Product Designer</span>
+          </p></div></div>
+        </div>
+
+        <a class="xp-row rv" href="https://www.theswaddle.com/" target="_blank" rel="noopener">
+          <div class="xp-more"><div class="xp-more-in"><video class="xp-thumb" autoplay loop muted playsinline preload="metadata" poster="img/hero-swaddle.jpg" aria-label="The Swaddle website: scrolling the live homepage from the hero to the Objectified Bindi film and back"><source src="img/hero-swaddle-live.webm" type="video/webm"><source src="img/hero-swaddle-live.mp4" type="video/mp4"></video><div class="xp-line">
+            <span class="xp-work">The Swaddle</span>
+          </div><p class="xp-desc">
+            A redesign of The Swaddle's website, bringing its independent journalism into a bolder, more expressive reading experience.
+            <span class="xp-role">Independent UX Case Study</span>
+          </p></div></div>
+        </a>
+
+        <a class='xp-row rv' href='ripl.html' rel='noopener' target='_blank'>
+          <div class="xp-more"><div class="xp-more-in"><video class="xp-thumb" autoplay loop muted playsinline preload="metadata" poster="img/hero-ripl-live.jpg" aria-label="Ripl watch concept: rippling time rings on the watch face"><source src="img/hero-ripl-live.webm" type="video/webm"><source src="img/hero-ripl-live.mp4" type="video/mp4"></video><div class="xp-line">
+            <span class="xp-work">Ripl</span>
+          </div><p class="xp-desc">
+            A smartwatch and mobile system that helps you stay with a task by removing constant time checks, while still building a feel for how long things actually take.
+            <span class="xp-role">UX/UI, Visual &amp; Motion Design</span>
+          </p></div></div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="sec" id="about">
+      <div class="col">
+        <p class="label rv">A little about me</p>
+        <img class="about-photo rv" src="img/me.jpg" alt="Malaika Saini">
+        <div class="prose">
+          <p class="rv">Most of what I design lives at a boundary that didn't exist a few years ago: the line between what a model decides on its own and what it hands back to a person. Get that line wrong, and people either stop trusting the tool or stop thinking for themselves. Get it right, and the tool disappears into the work.</p>
+          <p class="rv">I've spent over six years finding that line at three very different scales. As the founding designer at a generative-video startup, figuring out its interaction model from nothing. Inside an enterprise contact-center product built on millions of real conversations. And now at Google, designing AI across a seller's entire CRM, the inbox included, for thousands of people a day.</p>
+          <p class="rv">I studied Human-Computer Interaction Design at the School of Visual Arts, and I still think about design the way that program taught me to: as a series of judgment calls, not a style. These days most of my judgment calls are about autonomy: when to let a model act, when to make it explain itself, and when to just get out of the way.</p>
+          <p class="rv">I'm based in San Francisco.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="sec col" id="contact">
+      <p class="label rv">Say hello</p>
+      <div class="prose">
+        <p class="rv">An idea, an opportunity, or just to say hi. My inbox is open.</p>
+      </div>
+      <div class="links rv">
+        <a href="mailto:malaikasaiini@gmail.com">malaikasaiini@gmail.com</a>
+        <a href="https://www.linkedin.com/in/malaika-saini-652b46181/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/malaikasaini7" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </section>
+
+    <div class="closing">
+      <canvas class="dusk" id="dusk" aria-hidden="true"></canvas>
+      <footer class="foot">
+        <span>Malaika Saini © 2026</span>
+        <span class="clock" id="clock">--:--</span>
+      </footer>
+    </div>
+
+  </main>
+
+  <script src="field.js?v=3d4a2c6"></script>
+  <script src="script.js"></script>
+  <script src="micro.js"></script>
+<script>
+// Motion covers: nudge playback on first interaction for browsers that block autoplay (battery saver etc.)
+(function(){var go=function(){document.querySelectorAll('video[autoplay]').forEach(function(v){if(v.paused){v.play().catch(function(){})}})};window.addEventListener('load',go);['pointerdown','touchstart','keydown'].forEach(function(e){document.addEventListener(e,go,{once:true,capture:true})});})();
+</script>
+
+<style>
+/* Scratchable hero: the original wide moving field erases to the roast underneath. */
+.scratch-card{position:relative;width:100%;height:clamp(255px,36vh,360px);margin:2px 0 4px;isolation:isolate;background:transparent;touch-action:none;cursor:crosshair}
+.scratch-cover{position:absolute;inset:0;z-index:3;background:linear-gradient(160deg,#f5f9f7,#c3deec 35%,#a6cc79 70%,#2e6b43);will-change:mask-image,-webkit-mask-image}
+.scratch-cover .field{position:absolute;inset:0;display:block;width:100%;height:100%;margin:0;border-radius:0;pointer-events:none}
+.scratch-reveal{position:absolute;inset:0;z-index:1;overflow:hidden;background:#101010;color:#faf9f6;opacity:0;transition:opacity .18s ease}.scratch-card.has-started .scratch-reveal,.scratch-card.is-revealed .scratch-reveal{opacity:1}
+.scratch-reveal video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 38%;border:0}
+.scratch-reveal::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0 48%,rgba(7,7,7,.18) 58%,rgba(7,7,7,.92) 100%)}
+.scratch-reveal p{position:absolute;z-index:1;right:0;bottom:0;box-sizing:border-box;width:42%;max-width:260px;margin:0;padding:clamp(18px,3vw,28px);overflow-wrap:break-word;font-family:var(--serif);font-size:clamp(19px,2.8vw,27px);line-height:1.02;letter-spacing:-.025em}
+.scratch-reveal p span{display:block;margin-bottom:8px;font-family:var(--sans);font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#e8ff78}
+.scratch-hint{position:absolute;z-index:4;left:50%;top:50%;transform:translate(-50%,-50%);margin:0;padding:9px 14px;border-radius:999px;background:rgba(247,246,242,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font:500 12px/1 var(--sans);letter-spacing:.06em;color:#252529;pointer-events:none;transition:opacity .35s ease}.scratch-hint span{display:inline-block;margin-left:4px;animation:scratchNudge 1.8s ease-in-out infinite}.scratch-card.has-started .scratch-hint,.scratch-card.is-revealed .scratch-hint{opacity:0}
+.scratch-reset{position:absolute;z-index:4;right:12px;bottom:12px;border:1px solid rgba(250,249,246,.35);border-radius:999px;padding:8px 12px;background:rgba(10,10,10,.62);backdrop-filter:blur(8px);color:#faf9f6;font:500 11px/1 var(--sans);letter-spacing:.05em;opacity:0;pointer-events:none;transition:opacity .25s ease;cursor:pointer}.scratch-card.is-revealed .scratch-reset{opacity:1;pointer-events:auto}
+@keyframes scratchNudge{0%,100%{transform:translate(0,0)}50%{transform:translate(5px,-5px)}}
+@media(max-width:640px){.scratch-card{height:270px}.scratch-reveal video{object-position:38% 38%}.scratch-reveal::after{background:linear-gradient(0deg,rgba(7,7,7,.92) 0,rgba(7,7,7,.18) 48%,transparent 72%)}.scratch-reveal p{left:0;right:0;bottom:0;width:100%;max-width:none;padding:15px 54px 15px 15px;font-size:19px}.scratch-reset{right:9px;bottom:9px}}
+@media(prefers-reduced-motion:reduce){.scratch-hint span{animation:none}}
+</style>
+<script>
+/* Erase a soft-edged rectangular mask over the moving field. */
+(function(){
+  'use strict';
+  var card=document.getElementById('scratchCard'),cover=document.getElementById('scratchCover'),reset=document.getElementById('scratchReset');if(!card||!cover)return;
+  var mask=document.createElement('canvas'),ctx=mask.getContext('2d'),edge=document.createElement('canvas'),edgeCtx=edge.getContext('2d'),reveal=card.querySelector('.scratch-reveal'),drawing=false,last=null,dpr=1;
+  function maskEl(el,url){el.style.webkitMaskImage=url;el.style.maskImage=url;el.style.webkitMaskSize='100% 100%';el.style.maskSize='100% 100%'}
+  function apply(){maskEl(cover,'url('+mask.toDataURL()+')')}
+  function softRect(w,h){
+    edge.width=w;edge.height=h;var im=edgeCtx.createImageData(w,h),a=im.data,i=0;
+    /* Match the field shader's original edge fade exactly. The scratch cover
+       itself stays unmasked at rest, so the WebGL field keeps its native look. */
+    var m=Math.min(w,h),radius=m*.14,fade=m*.18,cx=w/2,cy=h/2,bx=w/2,by=h/2;
+    function smooth(t){return t*t*(3-2*t)}
+    for(var y=0;y<h;y++)for(var x=0;x<w;x++){
+      var qx=Math.abs(x-cx)-bx+radius,qy=Math.abs(y-cy)-by+radius;
+      var d=Math.min(Math.max(qx,qy),0)+Math.hypot(Math.max(qx,0),Math.max(qy,0))-radius;
+      var t=Math.max(0,Math.min(1,-d/fade)),alpha=Math.pow(smooth(t),.9);
+      a[i++]=255;a[i++]=255;a[i++]=255;a[i++]=Math.round(255*alpha);
+    }
+    edgeCtx.putImageData(im,0,0);
+  }
+  function paint(){
+    var r=card.getBoundingClientRect();dpr=Math.min(devicePixelRatio||1,2);mask.width=Math.round(r.width*dpr);mask.height=Math.round(r.height*dpr);softRect(mask.width,mask.height);
+    maskEl(reveal,'url('+edge.toDataURL()+')');ctx.globalCompositeOperation='source-over';ctx.clearRect(0,0,mask.width,mask.height);ctx.drawImage(edge,0,0);apply();card.classList.remove('has-started','is-revealed');last=null;
+  }
+  function point(e){var r=card.getBoundingClientRect();return{x:(e.clientX-r.left)*dpr,y:(e.clientY-r.top)*dpr}}
+  function scratch(a,b){var radius=Math.max(30,mask.width*.06);ctx.globalCompositeOperation='destination-out';ctx.lineCap='round';ctx.lineJoin='round';ctx.lineWidth=radius*2;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();ctx.beginPath();ctx.arc(b.x,b.y,radius,0,Math.PI*2);ctx.fill();apply()}
+  function down(e){if(e.target.closest&&e.target.closest('button'))return;if(e.button!==undefined&&e.button!==0)return;drawing=true;last=point(e);card.setPointerCapture&&card.setPointerCapture(e.pointerId);card.classList.add('has-started');scratch(last,last);e.preventDefault()}
+  function move(e){if(!drawing)return;var p=point(e);scratch(last,p);last=p;e.preventDefault()}
+  function up(){if(!drawing)return;drawing=false;last=null;card.classList.add('is-revealed')}
+  card.addEventListener('pointerdown',down);card.addEventListener('pointermove',move);card.addEventListener('pointerup',up);card.addEventListener('pointercancel',up);reset.addEventListener('pointerdown',function(e){e.stopPropagation()});reset.addEventListener('click',function(e){e.stopPropagation();paint()});var timer;addEventListener('resize',function(){clearTimeout(timer);timer=setTimeout(paint,140)});paint();
+})();
+</script>
+
+</body>
+</html>
