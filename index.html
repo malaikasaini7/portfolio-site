@@ -47,7 +47,7 @@
 
         <div class="scratch-card rv in" id="scratchCard">
           <div class="scratch-reveal">
-            <img src="img/1-tech-roast-reveal.gif" alt="Malaika at the Tech Roast Show">
+            <video autoplay loop muted playsinline aria-label="Malaika at the Tech Roast Show"><source src="img/2-tech-roast-reveal.webm" type="video/webm"><source src="img/3-tech-roast-reveal.mp4" type="video/mp4"></video>
             <p><span>Fun fact</span>I got roasted at a Tech Roast Show in front of 500+ people.</p>
           </div>
           <canvas class="field" id="field" aria-label="Scratch the moving colour field to reveal a fun fact"></canvas>
@@ -206,7 +206,7 @@
 .scratch-card .field{position:absolute;inset:0;width:100%;height:100%;margin:0;border-radius:inherit;z-index:2}
 .scratch-card .field.is-scratching{pointer-events:none}
 .scratch-reveal{position:absolute;inset:0;z-index:1;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(150px,1fr);background:#080808;color:#faf9f6}
-.scratch-reveal img{width:100%;height:100%;object-fit:cover;object-position:center 38%}
+.scratch-reveal video{width:100%;height:100%;object-fit:cover;object-position:center 38%}
 .scratch-reveal p{align-self:end;margin:0;padding:clamp(18px,3vw,30px);font-family:var(--serif);font-size:clamp(21px,3.5vw,32px);line-height:1.02;letter-spacing:-.025em}
 .scratch-reveal p span{display:block;margin-bottom:10px;font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#e8ff78}
 .scratch-hint{position:absolute;z-index:4;left:50%;top:50%;transform:translate(-50%,-50%);margin:0;padding:9px 14px;border-radius:999px;background:rgba(247,246,242,.84);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font:500 12px/1 var(--sans);letter-spacing:.06em;color:#252529;pointer-events:none;transition:opacity .35s ease}
