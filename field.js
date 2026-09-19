@@ -170,6 +170,7 @@
     addEventListener('resize', size);
 
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isHero = canvas.id === 'field';
     let onScreen = true;
     new IntersectionObserver(es => {
       es.forEach(e => {
@@ -186,12 +187,12 @@
       gl.viewport(0, 0, canvas.width, canvas.height);
       gl.uniform1f(u.uTime, elapsed);
       gl.uniform2f(u.uRes, canvas.width, canvas.height);
-      if (onScreen && !document.hidden) gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-      if (!reduce && onScreen && !document.hidden) requestAnimationFrame(render);
+      if ((isHero || onScreen) && !document.hidden) gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      if (!reduce && (isHero || onScreen) && !document.hidden) requestAnimationFrame(render);
     }
     requestAnimationFrame(render);
     addEventListener('visibilitychange', () => {
-      if (!document.hidden && onScreen && !reduce) requestAnimationFrame(render);
+      if (!document.hidden && (isHero || onScreen) && !reduce) requestAnimationFrame(render);
     });
   }
 
