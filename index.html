@@ -192,7 +192,7 @@
 
   </main>
 
-  <script src="field.js?v=3d4a2c6"></script>
+  <script src="field.js?v=3d4a2c7"></script>
   <script src="script.js"></script>
   <script src="micro.js"></script>
 <script>
@@ -203,7 +203,7 @@
 <style>
 /* Scratchable hero: the original wide moving field erases to the roast underneath. */
 .scratch-card{position:relative;width:100%;height:clamp(255px,36vh,360px);margin:2px 0 4px;isolation:isolate;background:transparent;touch-action:none;cursor:crosshair}
-.scratch-cover{position:absolute;inset:0;z-index:3;background:linear-gradient(160deg,#f5f9f7,#c3deec 35%,#a6cc79 70%,#2e6b43);will-change:mask-image,-webkit-mask-image}
+.scratch-cover{position:absolute;inset:0;z-index:3;background:transparent;will-change:mask-image,-webkit-mask-image}
 .scratch-cover .field{position:absolute;inset:0;display:block;width:100%;height:100%;margin:0;border-radius:0;pointer-events:none}
 .scratch-reveal{position:absolute;inset:0;z-index:1;overflow:hidden;background:#101010;color:#faf9f6;opacity:0;transition:opacity .18s ease}.scratch-card.has-started .scratch-reveal,.scratch-card.is-revealed .scratch-reveal{opacity:1}
 .scratch-reveal video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 38%;border:0}
