@@ -48,7 +48,8 @@
         <div class="scratch-card rv in" id="scratchCard">
           <div class="scratch-reveal">
             <video autoplay loop muted playsinline poster="img/7-tech-roast-poster.jpg" aria-label="Malaika at the Tech Roast Show"><source src="img/4-tech-roast-clean.webm" type="video/webm"><source src="img/5-tech-roast-clean.mp4" type="video/mp4"></video>
-            <p><span>Fun fact</span>I got roasted at a Tech Roast Show in front of 500+ people.</p>
+            <img id="revealImg" alt="" hidden>
+            <p id="revealFact"><span>Fun fact</span>I got roasted at a Tech Roast Show in front of 500+ people.</p>
           </div>
           <div class="scratch-cover" id="scratchCover" role="img" aria-label="Scratch the moving colour field to reveal a fun fact"><canvas class="field" id="field" aria-hidden="true"></canvas></div>
           <p class="scratch-hint" id="scratchHint">scratch to reveal <span>↗</span></p>
@@ -206,7 +207,7 @@
 .scratch-cover{position:absolute;inset:0;z-index:3;background:linear-gradient(160deg,#f5f9f7,#c3deec 35%,#a6cc79 70%,#2e6b43);will-change:mask-image,-webkit-mask-image}
 .scratch-cover .field{position:absolute;inset:0;display:block;width:100%;height:100%;margin:0;border-radius:0;pointer-events:none}
 .scratch-reveal{position:absolute;inset:0;z-index:1;overflow:hidden;background:#101010;color:#faf9f6;-webkit-mask-image:radial-gradient(ellipse 94% 94% at 50% 50%,#000 66%,transparent 100%);mask-image:radial-gradient(ellipse 94% 94% at 50% 50%,#000 66%,transparent 100%)}
-.scratch-reveal video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 38%;border:0}
+.scratch-reveal video,.scratch-reveal img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 38%;border:0}
 .scratch-reveal::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0 48%,rgba(7,7,7,.18) 58%,rgba(7,7,7,.92) 100%)}
 .scratch-reveal p{position:absolute;z-index:1;right:0;bottom:0;box-sizing:border-box;width:42%;max-width:260px;margin:0;padding:clamp(18px,3vw,28px);overflow-wrap:break-word;font-family:var(--serif);font-size:clamp(19px,2.8vw,27px);line-height:1.02;letter-spacing:-.025em}
 .scratch-reveal p span{display:block;margin-bottom:8px;font-family:var(--sans);font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#e8ff78}
@@ -217,6 +218,29 @@
 @media(prefers-reduced-motion:reduce){.scratch-hint span{animation:none}}
 </style>
 <script>
+/* A different fun fact each load: hash the timestamp, mod by the number of facts, skip an immediate repeat. */
+(function(){
+  'use strict';
+  var facts=[
+    {text:'I got roasted at a Tech Roast Show in front of 500+ people.'},
+    {text:'I love photoboothing',img:'img/8-photobooth-strip.jpg',alt:'Malaika and friends crammed into a photo booth strip'},
+    {text:'I love vision boards and motivational quotes',img:'img/9-vision-board.jpg',alt:'Her 2026 vision board collage'},
+    {text:'It was so great meeting other founding designers and younger designers who want to become founding designers at startups',img:'img/10-founding-designers.jpg',alt:'Malaika with other founding designers at a hackathon'}
+  ];
+  var t=String(Date.now()),h=0,i,pick,last=-1;
+  for(i=0;i<t.length;i++)h=(h*31+t.charCodeAt(i))>>>0;
+  pick=h%facts.length;
+  try{last=parseInt(localStorage.getItem('ffPick'),10)}catch(e){}
+  if(pick===last)pick=(pick+1)%facts.length;
+  try{localStorage.setItem('ffPick',pick)}catch(e){}
+  var f=facts[pick],factEl=document.getElementById('revealFact');
+  if(factEl)factEl.innerHTML='<span>Fun fact</span>'+f.text;
+  if(f.img){
+    var v=document.querySelector('.scratch-reveal video');if(v)v.style.display='none';
+    var im=document.getElementById('revealImg');if(im){im.src=f.img;im.alt=f.alt;im.hidden=false}
+  }
+})();
+
 /* Erase a canvas-built mask over the moving field. */
 (function(){
   'use strict';
