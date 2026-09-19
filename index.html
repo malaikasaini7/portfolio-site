@@ -206,50 +206,28 @@
 .scratch-card{position:relative;width:100%;height:clamp(255px,36vh,360px);margin:2px 0 4px;isolation:isolate;background:transparent;touch-action:none;cursor:crosshair}
 .scratch-cover{position:absolute;inset:0;z-index:3;background:linear-gradient(160deg,#f5f9f7,#c3deec 35%,#a6cc79 70%,#2e6b43);will-change:mask-image,-webkit-mask-image}
 .scratch-cover .field{position:absolute;inset:0;display:block;width:100%;height:100%;margin:0;border-radius:0;pointer-events:none}
-.scratch-reveal{position:absolute;inset:0;z-index:1;overflow:hidden;background:#101010;color:#faf9f6;opacity:0;transition:opacity .2s ease}.scratch-card.has-started .scratch-reveal{opacity:1}-webkit-mask-image:radial-gradient(ellipse 94% 94% at 50% 50%,#000 66%,transparent 100%);mask-image:radial-gradient(ellipse 94% 94% at 50% 50%,#000 66%,transparent 100%)}
+.scratch-reveal{position:absolute;inset:0;z-index:1;overflow:hidden;background:#101010;color:#faf9f6}
 .scratch-reveal video,.scratch-reveal img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 38%;border:0}
 .scratch-reveal::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0 48%,rgba(7,7,7,.18) 58%,rgba(7,7,7,.92) 100%)}
 .scratch-reveal p{position:absolute;z-index:1;right:0;bottom:0;box-sizing:border-box;width:42%;max-width:260px;margin:0;padding:clamp(18px,3vw,28px);overflow-wrap:break-word;font-family:var(--serif);font-size:clamp(19px,2.8vw,27px);line-height:1.02;letter-spacing:-.025em}
 .scratch-reveal p span{display:block;margin-bottom:8px;font-family:var(--sans);font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#e8ff78}
-.scratch-hint{position:absolute;z-index:4;left:50%;top:50%;transform:translate(-50%,-50%);margin:0;padding:9px 14px;border-radius:999px;background:rgba(247,246,242,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font:500 12px/1 var(--sans);letter-spacing:.06em;color:#252529;pointer-events:none;transition:opacity .35s ease}.scratch-hint span{display:inline-block;margin-left:4px;animation:scratchNudge 1.8s ease-in-out infinite}.scratch-card.has-started .scratch-hint,.scratch-card.is-revealed .scratch-hint{opacity:0}
+.scratch-card:not(.has-started):not(.is-revealed) .scratch-reveal p{top:50%;bottom:auto;transform:translateY(-50%);padding:0 12px 0 0;font-size:clamp(14px,2.1vw,20px);line-height:1}.scratch-card:not(.has-started):not(.is-revealed) .scratch-reveal p span{margin-bottom:4px;font-size:8px}
+.scratch-hint{display:none}
 .scratch-reset{position:absolute;z-index:4;right:12px;bottom:12px;border:1px solid rgba(250,249,246,.35);border-radius:999px;padding:8px 12px;background:rgba(10,10,10,.62);backdrop-filter:blur(8px);color:#faf9f6;font:500 11px/1 var(--sans);letter-spacing:.05em;opacity:0;pointer-events:none;transition:opacity .25s ease;cursor:pointer}.scratch-card.is-revealed .scratch-reset{opacity:1;pointer-events:auto}
 @keyframes scratchNudge{0%,100%{transform:translate(0,0)}50%{transform:translate(5px,-5px)}}
-@media(max-width:640px){.scratch-card{height:270px}.scratch-reveal video{object-position:38% 38%}.scratch-reveal::after{background:linear-gradient(0deg,rgba(7,7,7,.92) 0,rgba(7,7,7,.18) 48%,transparent 72%)}.scratch-reveal p{left:0;right:0;bottom:0;width:100%;max-width:none;padding:15px 54px 15px 15px;font-size:19px}.scratch-reset{right:9px;bottom:9px}}
+@media(max-width:640px){.scratch-card{height:270px}.scratch-reveal video{object-position:38% 38%}.scratch-card:not(.has-started):not(.is-revealed) .scratch-reveal p{left:auto;right:11%;top:50%;bottom:auto;width:44%;padding:0;font-size:16px;transform:translateY(-50%)}.scratch-reveal::after{background:linear-gradient(0deg,rgba(7,7,7,.92) 0,rgba(7,7,7,.18) 48%,transparent 72%)}.scratch-reveal p{left:0;right:0;bottom:0;width:100%;max-width:none;padding:15px 54px 15px 15px;font-size:19px}.scratch-reset{right:9px;bottom:9px}}
 @media(prefers-reduced-motion:reduce){.scratch-hint span{animation:none}}
 </style>
 <script>
-/* A different fun fact each load: hash the timestamp, mod by the number of facts, skip an immediate repeat. */
-(function(){
-  'use strict';
-  var facts=[
-    {text:'I got roasted at a Tech Roast Show in front of 500+ people.'},
-    {text:'I love photoboothing',img:'img/8-photobooth-strip.jpg',alt:'Malaika and friends crammed into a photo booth strip'},
-    {text:'I love vision boards and motivational quotes',img:'img/9-vision-board.jpg',alt:'Her 2026 vision board collage'},
-    {text:'It was so great meeting other founding designers and younger designers who want to become founding designers at startups',img:'img/10-founding-designers.jpg',alt:'Malaika with other founding designers at a hackathon'},
-    {text:'I dressed up as the famous Louvre heist robber last Halloween',img:'img/11-louvre-heist-halloween.jpg',alt:'Malaika dressed as the Louvre heist robber, duffel bag in hand'},
-    {text:'I love board games and good style art',img:'img/12-board-games.jpg',alt:'A Catch the Moon board game box next to a cat latte art'}
-  ];
-  var t=String(Date.now()),h=0,i,pick,last=-1;
-  for(i=0;i<t.length;i++)h=(h*31+t.charCodeAt(i))>>>0;
-  pick=h%facts.length;
-  try{last=parseInt(localStorage.getItem('ffPick'),10)}catch(e){}
-  if(pick===last)pick=(pick+1)%facts.length;
-  try{localStorage.setItem('ffPick',pick)}catch(e){}
-  var f=facts[pick],factEl=document.getElementById('revealFact');
-  if(factEl)factEl.innerHTML='<span>Fun fact</span>'+f.text;
-  if(f.img){
-    var v=document.querySelector('.scratch-reveal video');if(v)v.style.display='none';
-    var im=document.getElementById('revealImg');if(im){im.src=f.img;im.alt=f.alt;im.hidden=false}
-  }
-})();
-
 /* Erase a canvas-built mask over the moving field. */
 (function(){
   'use strict';
   var card=document.getElementById('scratchCard'),cover=document.getElementById('scratchCover'),reset=document.getElementById('scratchReset');if(!card||!cover)return;
-  var mask=document.createElement('canvas'),ctx=mask.getContext('2d'),drawing=false,last=null,dpr=1;
-  function apply(){var url='url('+mask.toDataURL()+')';cover.style.webkitMaskImage=url;cover.style.maskImage=url;cover.style.webkitMaskSize='100% 100%';cover.style.maskSize='100% 100%'}
-  function paint(){var r=card.getBoundingClientRect();dpr=Math.min(devicePixelRatio||1,2);mask.width=Math.round(r.width*dpr);mask.height=Math.round(r.height*dpr);ctx.globalCompositeOperation='source-over';ctx.fillStyle='#fff';ctx.fillRect(0,0,mask.width,mask.height);/* feather the perimeter so the field dissolves into the page */ctx.globalCompositeOperation='destination-in';ctx.save();ctx.translate(mask.width/2,mask.height/2);ctx.scale(mask.width/2,mask.height/2);var feather=ctx.createRadialGradient(0,0,0,0,0,1);feather.addColorStop(0,'#fff');feather.addColorStop(0.84,'#fff');feather.addColorStop(0.92,'rgba(255,255,255,.5)');feather.addColorStop(1,'rgba(255,255,255,0)');ctx.fillStyle=feather;ctx.beginPath();ctx.arc(0,0,1.42,0,Math.PI*2);ctx.fill();ctx.restore();ctx.globalCompositeOperation='source-over';apply();card.classList.remove('has-started','is-revealed');last=null}
+  var mask=document.createElement('canvas'),ctx=mask.getContext('2d'),revealMask=document.createElement('canvas'),revealCtx=revealMask.getContext('2d'),reveal=card.querySelector('.scratch-reveal'),drawing=false,last=null,dpr=1;
+  function maskEl(el,url){el.style.webkitMaskImage=url;el.style.maskImage=url;el.style.webkitMaskSize='100% 100%';el.style.maskSize='100% 100%'}
+  function apply(){maskEl(cover,'url('+mask.toDataURL()+')')}
+  function peek(){var radius=Math.max(30,mask.width*.06);ctx.globalCompositeOperation='destination-out';ctx.lineCap='round';ctx.lineWidth=radius*2;ctx.beginPath();ctx.moveTo(mask.width*.22,mask.height*.5);ctx.lineTo(mask.width*.72,mask.height*.5);ctx.stroke();ctx.globalCompositeOperation='source-over'}
+  function paint(){var r=card.getBoundingClientRect();dpr=Math.min(devicePixelRatio||1,2);mask.width=Math.round(r.width*dpr);mask.height=Math.round(r.height*dpr);revealMask.width=mask.width;revealMask.height=mask.height;revealCtx.save();revealCtx.translate(mask.width/2,mask.height/2);revealCtx.scale(mask.width/2,mask.height/2);var revealFeather=revealCtx.createRadialGradient(0,0,0,0,0,1);revealFeather.addColorStop(0,'#fff');revealFeather.addColorStop(.82,'#fff');revealFeather.addColorStop(.9,'rgba(255,255,255,0)');revealCtx.fillStyle=revealFeather;revealCtx.beginPath();revealCtx.arc(0,0,1.18,0,Math.PI*2);revealCtx.fill();revealCtx.restore();maskEl(reveal,'url('+revealMask.toDataURL()+')');ctx.globalCompositeOperation='source-over';ctx.fillStyle='#fff';ctx.fillRect(0,0,mask.width,mask.height);/* feather the perimeter so the field dissolves into the page */ctx.globalCompositeOperation='destination-in';ctx.save();ctx.translate(mask.width/2,mask.height/2);ctx.scale(mask.width/2,mask.height/2);var feather=ctx.createRadialGradient(0,0,0,0,0,1);feather.addColorStop(0,'#fff');feather.addColorStop(0.84,'#fff');feather.addColorStop(0.92,'rgba(255,255,255,.5)');feather.addColorStop(1,'rgba(255,255,255,0)');ctx.fillStyle=feather;ctx.beginPath();ctx.arc(0,0,1.42,0,Math.PI*2);ctx.fill();ctx.restore();ctx.globalCompositeOperation='source-over';/* the resting cover starts with her approved pill-shaped peek */peek();apply();card.classList.remove('has-started','is-revealed');last=null}
   function point(e){var r=card.getBoundingClientRect();return{x:(e.clientX-r.left)*dpr,y:(e.clientY-r.top)*dpr}}
   function scratch(a,b){var radius=Math.max(30,mask.width*.06);ctx.globalCompositeOperation='destination-out';ctx.lineCap='round';ctx.lineJoin='round';ctx.lineWidth=radius*2;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();ctx.beginPath();ctx.arc(b.x,b.y,radius,0,Math.PI*2);ctx.fill();apply()}
   function down(e){if(e.target.closest&&e.target.closest('button'))return;if(e.button!==undefined&&e.button!==0)return;drawing=true;last=point(e);card.setPointerCapture&&card.setPointerCapture(e.pointerId);card.classList.add('has-started');scratch(last,last);e.preventDefault()}
