@@ -225,9 +225,16 @@
   function maskEl(el,url){el.style.webkitMaskImage=url;el.style.maskImage=url;el.style.webkitMaskSize='100% 100%';el.style.maskSize='100% 100%'}
   function apply(){maskEl(cover,'url('+mask.toDataURL()+')')}
   function softRect(w,h){
-    edge.width=w;edge.height=h;var im=edgeCtx.createImageData(w,h),a=im.data,feather=Math.max(22*dpr,Math.min(w,h)*.13),i=0;
+    edge.width=w;edge.height=h;var im=edgeCtx.createImageData(w,h),a=im.data,i=0;
+    /* A wide rounded rectangle with a long alpha falloff, matching the original
+       hero's edgeless field rather than exposing a hard canvas perimeter. */
+    var feather=Math.max(34*dpr,Math.min(w,h)*.15),inset=feather*.38,radius=Math.max(26*dpr,Math.min(w,h)*.11);
+    var cx=w/2,cy=h/2,bx=w/2-inset-radius,by=h/2-inset-radius;
     for(var y=0;y<h;y++)for(var x=0;x<w;x++){
-      var d=Math.min(x,y,w-1-x,h-1-y),t=Math.max(0,Math.min(1,d/feather));t=t*t*(3-2*t);
+      var qx=Math.abs(x-cx)-bx,qy=Math.abs(y-cy)-by;
+      var outside=Math.hypot(Math.max(qx,0),Math.max(qy,0)),inside=Math.min(Math.max(qx,qy),0);
+      var signed=outside+inside-radius,t=Math.max(0,Math.min(1,.5-signed/feather));
+      t=t*t*(3-2*t);t=t*t*(3-2*t);
       a[i++]=255;a[i++]=255;a[i++]=255;a[i++]=Math.round(255*t);
     }
     edgeCtx.putImageData(im,0,0);
